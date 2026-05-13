@@ -1291,6 +1291,7 @@ section {
 .article-date,
 .article-meta-item,
 .article-tag-date {
+  padding: 10;
   font-size: var(--text-xs);
   letter-spacing: 0.03em;
   font-weight: 500;
