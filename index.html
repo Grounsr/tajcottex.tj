@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/scene3d.css">
 </head>
 <body>
 
@@ -92,7 +93,10 @@
   </nav>
 </nav>
 
-<!-- ============ HERO ============ -->
+<!-- ============ 3D SCENE: HERO + VALUE CHAIN ============ -->
+<div class="scene" data-scene>
+  <div class="scene-layer" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
+
 <section class="hero" id="home" aria-label="Hero">
   <img src="source/hero-cotton-fields.avif" alt="" class="hero-bg" aria-hidden="true" loading="eager">
   <div class="hero-overlay" aria-hidden="true"></div>
@@ -231,6 +235,103 @@
     </div>
   </div>
 </section>
+
+<!-- ============ VALUE CHAIN (drives the 3D morph) ============ -->
+<section class="cycle" aria-labelledby="cycle-title">
+  <div class="container">
+    <article class="cycle-step" data-step="0">
+      <div class="cycle-step-body">
+        <h2 class="cycle-title" id="cycle-title">
+          <span data-lang="ru" class="lang-active">От хлопка-сырца до готовой продукции</span>
+            <span data-lang="en">From raw cotton to finished goods</span>
+            <span data-lang="tj">Аз пахтаи хом то маҳсулоти тайёр</span>
+        </h2>
+        <p class="cycle-stage">
+          <span data-lang="ru" class="lang-active">Этап 1 из 4</span>
+            <span data-lang="en">Stage 1 of 4</span>
+            <span data-lang="tj">Марҳилаи 1 аз 4</span>
+        </p>
+        <h3>
+          <span data-lang="ru" class="lang-active">Хлопок-сырец</span>
+            <span data-lang="en">Raw cotton</span>
+            <span data-lang="tj">Пахтаи хом</span>
+        </h3>
+        <p>
+          <span data-lang="ru" class="lang-active">Урожай 2025 года — 392 200 тонн. С поля начинается вся цепочка создания стоимости, поэтому мы помогаем хозяйствам внедрять устойчивые и органические агропрактики.</span>
+            <span data-lang="en">The 2025 harvest reached 392,200 tons. The whole value chain starts in the field, so we help farms adopt sustainable and organic practices.</span>
+            <span data-lang="tj">Ҳосили соли 2025 ба 392 200 тонна расид. Тамоми занҷираи арзиш аз саҳро оғоз мешавад, бинобар ин мо ба хоҷагиҳо дар ҷорӣ намудани амалияҳои устувор ва органикӣ кумак мекунем.</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="cycle-step" data-step="1">
+      <div class="cycle-step-body">
+        <p class="cycle-stage">
+          <span data-lang="ru" class="lang-active">Этап 2 из 4</span>
+            <span data-lang="en">Stage 2 of 4</span>
+            <span data-lang="tj">Марҳилаи 2 аз 4</span>
+        </p>
+        <h3>
+          <span data-lang="ru" class="lang-active">Пряжа</span>
+            <span data-lang="en">Yarn</span>
+            <span data-lang="tj">Ресмон</span>
+        </h3>
+        <p>
+          <span data-lang="ru" class="lang-active">Волокно очищают и прядут в пряжу. Мы приводим на предприятия современное прядильное оборудование и технологии мировых производителей, чтобы переработка шла внутри страны.</span>
+            <span data-lang="en">Fibre is cleaned and spun into yarn. We bring modern spinning equipment and technology from global manufacturers so processing happens at home.</span>
+            <span data-lang="tj">Нахро тоза карда, ресида, ресмон тайёр мекунанд. Мо таҷҳизот ва технологияҳои муосири ресандагиро аз истеҳсолкунандагони ҷаҳонӣ ба корхонаҳо меорем, то коркард дар дохили кишвар сурат гирад.</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="cycle-step" data-step="2">
+      <div class="cycle-step-body">
+        <p class="cycle-stage">
+          <span data-lang="ru" class="lang-active">Этап 3 из 4</span>
+            <span data-lang="en">Stage 3 of 4</span>
+            <span data-lang="tj">Марҳилаи 3 аз 4</span>
+        </p>
+        <h3>
+          <span data-lang="ru" class="lang-active">Ткань</span>
+            <span data-lang="en">Fabric</span>
+            <span data-lang="tj">Матоъ</span>
+        </h3>
+        <p>
+          <span data-lang="ru" class="lang-active">Ткачество, крашение и отделка превращают хлопок в продукт с высокой добавленной стоимостью. Национальная стратегия 2024–2040 предусматривает 10 текстильных кластеров и полный цикл переработки внутри страны.</span>
+            <span data-lang="en">Weaving, dyeing and finishing turn cotton into a high-value product. The National Strategy 2024–2040 plans 10 textile clusters and full domestic processing.</span>
+            <span data-lang="tj">Бофандагӣ, рангкунӣ ва коркарди ниҳоӣ пахтаро ба маҳсулоти дорои арзиши иловагии баланд табдил медиҳанд. Стратегияи миллии 2024–2040 таъсиси 10 кластери нассоҷӣ ва коркарди пурраи дохилиро пешбинӣ мекунад.</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="cycle-step" data-step="3">
+      <div class="cycle-step-body">
+        <p class="cycle-stage">
+          <span data-lang="ru" class="lang-active">Этап 4 из 4</span>
+            <span data-lang="en">Stage 4 of 4</span>
+            <span data-lang="tj">Марҳилаи 4 аз 4</span>
+        </p>
+        <h3>
+          <span data-lang="ru" class="lang-active">Мировые рынки</span>
+            <span data-lang="en">Global markets</span>
+            <span data-lang="tj">Бозорҳои ҷаҳонӣ</span>
+        </h3>
+        <p>
+          <span data-lang="ru" class="lang-active">Через сеть ITMF предприятия-члены выходят на партнёров и покупателей более чем в 60 странах. Мы помогаем с сертификацией, выставками и экспортными процедурами.</span>
+            <span data-lang="en">Through the ITMF network, member companies reach partners and buyers in more than 60 countries. We help with certification, trade fairs and export procedures.</span>
+            <span data-lang="tj">Тавассути шабакаи ITMF ширкатҳои аъзо бо шарикон ва харидорон дар зиёда аз 60 кишвар робита пайдо мекунанд. Мо дар сертификатсия, намоишгоҳҳо ва расмиёти содирот кумак мекунем.</span>
+        </p>
+        <a href="activities.html" class="link-arrow">
+          <span data-lang="ru" class="lang-active">Поддержка экспорта</span>
+            <span data-lang="en">Export support</span>
+            <span data-lang="tj">Дастгирии содирот</span>
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+</div><!-- /.scene -->
 
 <!-- ============ STATS STRIP ============ -->
 <div class="stats-strip" role="region" aria-label="Key statistics">
@@ -832,6 +933,8 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="js/scene3d.js" defer></script>
 <script src="js/main.js"></script>
 <script data-pplx-inline-edit>
 (function(){
