@@ -1,11 +1,16 @@
 /* =====================================================
-   TAJCOTTEX — 3D scene (three.js r128)
-   One particle system that follows the value chain:
-   raw cotton → yarn → woven fabric → world markets.
-   The hero shows the cotton boll; scrolling through
-   .cycle-step blocks morphs it stage by stage.
-   Progressive enhancement: without WebGL the page
-   works as before (html.has-3d is never added).
+   TAJCOTTEX — 3D scenes (three.js r128, self-hosted)
+
+   One particle engine, two modes:
+   · data-scene="story"  (home) — raw cotton → yarn → woven
+     fabric → world markets; scrolling through .cycle__step
+     blocks morphs the object stage by stage.
+   · data-scene="cotton|yarn|fabric|globe|org" (inner page
+     headers) — a single object that gathers on load, follows
+     the pointer and dissolves as the header scrolls away.
+
+   Progressive enhancement: without WebGL the pages work
+   as plain HTML (html.has-3d is never added).
    ===================================================== */
 (function () {
   'use strict';
@@ -13,6 +18,9 @@
   var root = document.querySelector('[data-scene]');
   var canvas = root && root.querySelector('.scene-canvas');
   if (!root || !canvas || typeof THREE === 'undefined') return;
+
+  var MODE = root.getAttribute('data-scene');
+  var STORY = MODE === 'story';
 
   var renderer;
   try {
@@ -25,7 +33,7 @@
 
   var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var lowPower = Math.min(screen.width, screen.height) < 700 || (navigator.hardwareConcurrency || 8) <= 4;
-  var N = lowPower ? 9000 : 16000;
+  var N = STORY ? (lowPower ? 9000 : 16000) : (lowPower ? 6500 : 11000);
 
   /* ---------- deterministic random ---------- */
   var seed = 20240;
@@ -222,7 +230,68 @@
     }
   }
 
+  /* ---------- stage E: governance structure (structure page) ---------- */
+  // Tiers mirror the org chart: chairman → executive director (+ audit
+  // commission, dashed) → secretariat → five departments.
+  var ORG = [
+    { p: [0, 1.22, 0.35], r: 0.2, c: GOLD_BRIGHT },          // 0 chairman
+    { p: [0, 0.42, 0.18], r: 0.15, c: IVORY },               // 1 executive director
+    { p: [1.05, 0.42, 0.18], r: 0.13, c: GOLD, dashed: 1 },  // 2 audit commission
+    { p: [0, -0.3, 0.02], r: 0.14, c: IVORY },               // 3 secretariat
+    { p: [-1.5, -1.12, -0.16], r: 0.11, c: GREEN_LIGHT },
+    { p: [-0.75, -1.12, -0.16], r: 0.11, c: GREEN_LIGHT },
+    { p: [0, -1.12, -0.16], r: 0.11, c: GREEN_LIGHT },
+    { p: [0.75, -1.12, -0.16], r: 0.11, c: GREEN_LIGHT },
+    { p: [1.5, -1.12, -0.16], r: 0.11, c: GREEN_LIGHT }
+  ];
+  var BAR_Y = -0.72;
+  var EDGES = [[ORG[0].p, ORG[1].p], [[0, 0.42, 0.18], ORG[2].p, 1], [ORG[1].p, ORG[3].p],
+    [ORG[3].p, [0, BAR_Y, -0.07]], [[-1.5, BAR_Y, -0.07], [1.5, BAR_Y, -0.07]]];
+  for (var ei = 4; ei < 9; ei++) EDGES.push([[ORG[ei].p[0], BAR_Y, -0.07], ORG[ei].p]);
+  function stageOrg(out) {
+    var r = rnd();
+    out.arc = -1;
+    if (r < 0.62) {
+      var k = Math.floor(Math.pow(rnd(), 1.25) * ORG.length), n = ORG[k];
+      var d = randDir(), shell = rnd() < 0.75;
+      var rr = n.r * (shell ? 0.92 + rnd() * 0.08 : Math.cbrt(rnd()));
+      out.p = [n.p[0] + d[0] * rr, n.p[1] + d[1] * rr, n.p[2] + d[2] * rr];
+      var lit = 0.55 + 0.45 * Math.max(0, d[0] * -0.4 + d[1] * 0.6 + d[2] * 0.7);
+      out.c = mul(n.c, lit * (shell ? 1 : 0.8));
+      out.s = shell ? 0.03 : 0.024;
+      if (k === 0) out.arc = -2;
+    } else if (r < 0.72) {
+      // orbit halos around the upper tiers
+      var h = Math.floor(rnd() * 4), nh = ORG[h], a = rnd() * Math.PI * 2, hr = nh.r * (1.7 + 0.1 * rnd());
+      out.p = [nh.p[0] + Math.cos(a) * hr, nh.p[1] + Math.sin(a) * hr * 0.32, nh.p[2] + Math.sin(a) * hr * 0.6];
+      out.c = mul(GOLD, 0.55 + 0.3 * rnd());
+      out.s = 0.016;
+    } else if (r < 0.94) {
+      var e = EDGES[Math.floor(rnd() * EDGES.length)], t = rnd();
+      if (e[2] && Math.floor(t * 9) % 2) t = Math.floor(t * 9) / 9;   // dashed audit link
+      out.p = [e[0][0] + (e[1][0] - e[0][0]) * t + (rnd() - 0.5) * 0.012,
+               e[0][1] + (e[1][1] - e[0][1]) * t + (rnd() - 0.5) * 0.012,
+               e[0][2] + (e[1][2] - e[0][2]) * t + (rnd() - 0.5) * 0.012];
+      out.c = mul(GOLD, 0.7 + 0.3 * rnd());
+      out.s = 0.018;
+      out.arc = Math.floor(rnd() * 7) + t * 0.999;   // pulses travel down the links
+    } else {
+      var dd = randDir(), sr = 1.3 + rnd() * 1.1;
+      out.p = [dd[0] * sr * 1.3, dd[1] * sr * 0.8, dd[2] * sr * 0.6 - 0.3];
+      out.c = mul(IVORY, 0.25 + 0.25 * rnd());
+      out.s = 0.014;
+    }
+  }
+
   /* ---------- build geometry ---------- */
+  var KINDS = { cotton: 0, yarn: 1, fabric: 2, globe: 3, org: 0 };
+  var single = null;
+  if (!STORY) {
+    var gen = { cotton: stageCotton, yarn: stageYarn, fabric: stageFabric, globe: stageGlobe, org: stageOrg }[MODE];
+    if (!gen) return;
+    single = gen;
+  }
+
   var geo = new THREE.BufferGeometry();
   var A = new Float32Array(N * 3), B = new Float32Array(N * 3), C = new Float32Array(N * 3), D = new Float32Array(N * 3);
   var CA = new Float32Array(N * 3), CB = new Float32Array(N * 3), CC = new Float32Array(N * 3), CD = new Float32Array(N * 3);
@@ -230,10 +299,18 @@
   var o = {};
   function put(arr, carr, i) { arr[i * 3] = o.p[0]; arr[i * 3 + 1] = o.p[1]; arr[i * 3 + 2] = o.p[2]; carr[i * 3] = o.c[0]; carr[i * 3 + 1] = o.c[1]; carr[i * 3 + 2] = o.c[2]; }
   for (var i = 0; i < N; i++) {
-    stageCotton(o); put(A, CA, i); SZ[i * 4] = o.s;
-    stageYarn(o); put(B, CB, i); SZ[i * 4 + 1] = o.s;
-    stageFabric(o); put(C, CC, i); SZ[i * 4 + 2] = o.s; META[i * 4] = o.u; META[i * 4 + 1] = o.v;
-    stageGlobe(o); put(D, CD, i); SZ[i * 4 + 3] = o.s; META[i * 4 + 2] = o.arc;
+    if (STORY) {
+      stageCotton(o); put(A, CA, i); SZ[i * 4] = o.s;
+      stageYarn(o); put(B, CB, i); SZ[i * 4 + 1] = o.s;
+      stageFabric(o); put(C, CC, i); SZ[i * 4 + 2] = o.s; META[i * 4] = o.u; META[i * 4 + 1] = o.v;
+      stageGlobe(o); put(D, CD, i); SZ[i * 4 + 3] = o.s; META[i * 4 + 2] = o.arc;
+    } else {
+      o.u = 0; o.v = 0; o.arc = -1;
+      single(o);
+      put(A, CA, i); put(B, CB, i); put(C, CC, i); put(D, CD, i);
+      SZ[i * 4] = SZ[i * 4 + 1] = SZ[i * 4 + 2] = SZ[i * 4 + 3] = o.s;
+      META[i * 4] = o.u || 0; META[i * 4 + 1] = o.v || 0; META[i * 4 + 2] = o.arc === undefined ? -1 : o.arc;
+    }
     META[i * 4 + 3] = rnd();
     var sd = randDir(), sr = 4 + rnd() * 5;
     SC[i * 3] = sd[0] * sr; SC[i * 3 + 1] = sd[1] * sr; SC[i * 3 + 2] = sd[2] * sr - 2;
@@ -252,10 +329,11 @@
   geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 12);
 
   var uniforms = {
-    uT: { value: 0 }, uTime: { value: 0 }, uIntro: { value: reduceMotion ? 1 : 0 },
+    uT: { value: STORY ? 0 : KINDS[MODE] }, uTime: { value: 0 }, uIntro: { value: reduceMotion ? 1 : 0 },
     uPx: { value: 1000 }, uScale: { value: 1 }, uSpin: { value: 0 },
     uMotion: { value: reduceMotion ? 0 : 1 }, uOpacity: { value: 1 },
-    uFabN: { value: new THREE.Vector3(FAB_N[0], FAB_N[1], FAB_N[2]) }
+    uFabN: { value: new THREE.Vector3(FAB_N[0], FAB_N[1], FAB_N[2]) },
+    uPulseAll: { value: MODE === 'org' ? 1 : 0 }
   };
 
   var vert = [
@@ -263,7 +341,7 @@
     'attribute vec3 aColA; attribute vec3 aColB; attribute vec3 aColC; attribute vec3 aColD;',
     'attribute vec4 aSize; attribute vec4 aMeta; attribute vec3 aScatter;',
     'uniform float uT, uTime, uIntro, uPx, uScale, uSpin, uMotion;',
-    'uniform vec3 uFabN;',
+    'uniform vec3 uFabN; uniform float uPulseAll;',
     'varying vec3 vColor; varying float vAlpha;',
     'float ease(float x){ return x*x*(3.0-2.0*x); }',
     'vec3 rotY(vec3 p, float a){ float c=cos(a), s=sin(a); return vec3(c*p.x + s*p.z, p.y, -s*p.x + c*p.z); }',
@@ -290,9 +368,9 @@
     '  col *= mix(1.0, 0.16 + 0.84*face, wD);',
     '  if (aMeta.z >= 0.0) {',
     '    float pulse = pow(fract(fract(aMeta.z) - uTime*0.3 + floor(aMeta.z)*0.37), 7.0);',
-    '    col *= mix(1.0, 0.35 + 1.2*pulse, wD);',
+    '    col *= mix(1.0, 0.35 + 1.2*pulse, max(wD, uPulseAll));',
     '  } else if (aMeta.z < -1.5) {',
-    '    col *= mix(1.0, 0.85 + 0.3*sin(uTime*2.2 + r*6.2831), wD);',
+    '    col *= mix(1.0, 0.85 + 0.3*sin(uTime*2.2 + r*6.2831), max(wD, uPulseAll));',
     '  }',
     '  vColor = col;',
     '  vAlpha = ie;',
@@ -328,7 +406,7 @@
   scene.add(points);
 
   /* ---------- layout & scroll ---------- */
-  var steps = Array.prototype.slice.call(root.querySelectorAll('.cycle-step'));
+  var steps = Array.prototype.slice.call(root.querySelectorAll('.cycle__step'));
   var vw = 1, vh = 1;
   function resize() {
     vw = canvas.clientWidth || innerWidth;
@@ -360,23 +438,35 @@
     var top = steps[0].getBoundingClientRect().top;
     return smooth(vh * 0.2, vh * 0.75, top);
   }
+  // inner pages: 0 while the header is on screen, 1 once it has scrolled away
+  function scrolledOut() {
+    var r = root.getBoundingClientRect();
+    return clamp(-r.top / Math.max(1, r.height * 0.85), 0, 1);
+  }
 
   var visH = 2 * Math.tan(FOV * Math.PI / 360) * CAMZ;
+  var OBJ_R = { cotton: 1.6, yarn: 1.9, fabric: 1.9, globe: 1.5, org: 2.4 };
   function place(mixHero) {
     var wide = vw > 1024;
-    var sx, sy, rad, op;
-    if (wide) {
-      sx = 0.73; sy = 0.53; rad = Math.min(vw * 0.2, vh * 0.34); op = 1;
+    var sx, sy, rad, op, base = 1.6;
+    if (STORY) {
+      if (wide) {
+        sx = 0.73; sy = 0.53; rad = Math.min(vw * 0.2, vh * 0.34); op = 1;
+      } else {
+        var cyX = 0.5, cyY = 0.3, cyR = Math.min(vw * 0.4, vh * 0.22);
+        var hX = 0.5, hY = 0.5, hR = Math.min(vw * 0.48, vh * 0.3);
+        sx = cyX + (hX - cyX) * mixHero; sy = cyY + (hY - cyY) * mixHero;
+        rad = cyR + (hR - cyR) * mixHero; op = 1 - mixHero;
+      }
     } else {
-      var cyX = 0.5, cyY = 0.3, cyR = Math.min(vw * 0.4, vh * 0.22);
-      var hX = 0.5, hY = 0.5, hR = Math.min(vw * 0.48, vh * 0.3);
-      sx = cyX + (hX - cyX) * mixHero; sy = cyY + (hY - cyY) * mixHero;
-      rad = cyR + (hR - cyR) * mixHero; op = 1 - mixHero;
+      base = OBJ_R[MODE] || 1.6;
+      if (wide) { sx = 0.75; sy = 0.48; rad = Math.min(vw * 0.19, vh * 0.34); op = 1; }
+      else { sx = 0.64; sy = 0.24; rad = Math.min(vw * 0.32, vh * 0.18); op = 0.4; }
     }
     var visW = visH * (vw / vh);
     points.position.x = (sx - 0.5) * visW;
     points.position.y = (0.5 - sy) * visH;
-    var s = (rad / vh * visH) / 1.6;
+    var s = (rad / vh * visH) / base;
     points.scale.setScalar(s);
     uniforms.uScale.value = s;
     uniforms.uOpacity.value = op;
@@ -392,7 +482,8 @@
   }
 
   /* ---------- loop ---------- */
-  var visible = true, running = false, last = performance.now(), t = 0, stage = targetStage(), hm = heroMix();
+  var visible = true, running = false, last = performance.now(), t = 0;
+  var stage = STORY ? targetStage() : KINDS[MODE], hm = heroMix(), out = 0;
   var introStart = null;
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
@@ -406,22 +497,29 @@
     if (!visible || document.hidden) { running = false; return; }
     var dt = Math.min(0.05, (now - last) / 1000); last = now;
     if (!reduceMotion) t += dt;
-    // narrow screens: the hero text needs the space, so the boll gathers
-    // itself when the value-chain section scrolls in
-    if (introStart === null && (vw > 1024 || hm < 0.9)) introStart = now;
-    if (!reduceMotion) uniforms.uIntro.value = introStart === null ? 0 : clamp((now - introStart) / 2600, 0, 1);
+    // narrow screens (home): the hero text needs the space, so the boll
+    // gathers itself when the value-chain section scrolls in
+    if (introStart === null && (!STORY || vw > 1024 || hm < 0.9)) introStart = now;
+    var intro = introStart === null ? 0 : clamp((now - introStart) / 2600, 0, 1);
 
-    var ts = targetStage();
-    stage += (ts - stage) * (reduceMotion ? 1 : Math.min(1, dt * 3.5));
-    hm += (heroMix() - hm) * (reduceMotion ? 1 : Math.min(1, dt * 5));
-    uniforms.uT.value = stage;
+    if (STORY) {
+      var ts = targetStage();
+      stage += (ts - stage) * (reduceMotion ? 1 : Math.min(1, dt * 3.5));
+      hm += (heroMix() - hm) * (reduceMotion ? 1 : Math.min(1, dt * 5));
+      uniforms.uT.value = stage;
+      if (!reduceMotion) uniforms.uIntro.value = intro;
+    } else {
+      out += (scrolledOut() - out) * (reduceMotion ? 1 : Math.min(1, dt * 6));
+      if (!reduceMotion) uniforms.uIntro.value = intro * (1 - 0.55 * out);
+    }
     uniforms.uTime.value = t;
     uniforms.uSpin.value = Math.sin(t * 0.12) * 0.55;
 
     px += (tx - px) * Math.min(1, dt * 3); py += (ty - py) * Math.min(1, dt * 3);
-    var sway = reduceMotion ? 0 : Math.sin(t * 0.25) * 0.22;
-    points.rotation.y = sway + px * 0.5;
-    points.rotation.x = py * 0.25 + (reduceMotion ? 0 : Math.sin(t * 0.18) * 0.05);
+    var sway = reduceMotion ? 0 : Math.sin(t * 0.25) * (STORY ? 0.22 : 0.18);
+    var baseTilt = MODE === 'org' ? -0.12 : 0;
+    points.rotation.y = sway + px * 0.5 + (MODE === 'org' ? 0.28 : 0);
+    points.rotation.x = baseTilt + py * 0.25 + (reduceMotion ? 0 : Math.sin(t * 0.18) * 0.05);
     place(hm);
 
     renderer.render(scene, camera);
