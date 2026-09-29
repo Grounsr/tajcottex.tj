@@ -245,10 +245,24 @@
       data.lang = lang();
       btn.disabled = true;
       say('sending');
-      fetch(form.getAttribute('action'), { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
+      // Static hosting (GitHub Pages) cannot run send_mail.php, so the form
+      // is relayed through FormSubmit there; on PHP hosting it posts locally.
+      var relay = form.getAttribute('data-relay');
+      var useRelay = relay && /\.github\.io$/.test(location.hostname);
+      var url = useRelay ? relay : form.getAttribute('action');
+      var payload = data;
+      if (useRelay) {
+        var topic = form.elements.subject ? form.elements.subject.options[form.elements.subject.selectedIndex].getAttribute('data-ru') : '';
+        payload = {
+          _subject: 'Сайт TAJCOTTEX: ' + (topic || 'обращение'),
+          _template: 'table', _replyto: data.email, _honey: data.website,
+          'Имя': data.name, 'Email': data.email, 'Компания': data.company, 'Тема': topic, 'Сообщение': data.message, 'Язык': data.lang
+        };
+      }
+      fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) })
         .then(function (r) { return r.json(); })
         .then(function (res) {
-          if (res && res.success) { say('ok', 'is-ok'); form.reset(); applyLang(lang(), false); }
+          if (res && (res.success === true || res.success === 'true')) { say('ok', 'is-ok'); form.reset(); applyLang(lang(), false); }
           else say('fail', 'is-err');
         })
         .catch(function () { say('fail', 'is-err'); })
