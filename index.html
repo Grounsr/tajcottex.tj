@@ -38,7 +38,7 @@
 <div class="scene stage" data-scene="story">
   <div class="scene__layer" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
 
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero" aria-labelledby="hero-title" data-dust="80">
     <img class="hero__img" src="source/hero-cotton-fields.avif" alt="" aria-hidden="true" fetchpriority="high">
     <div class="hero__veil" aria-hidden="true"></div>
     <div class="wrap hero__in">
@@ -138,6 +138,14 @@
     </div>
   </div>
 </section>
+<section class="manifesto stage" aria-label="Манифест" data-dust="50">
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="wrap manifesto__in rv">
+    <div class="manifesto__mark" aria-hidden="true"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 7.5C6.5 8.5 5 11 5 14v3.5h5V13H7.4c.2-2 1.2-3.2 3.1-3.8zM19 7.5c-3.5 1-5 3.5-5 6.5v3.5h5V13h-2.6c.2-2 1.2-3.2 3.1-3.8z"/></svg></div>
+    <p class="manifesto__text"><span data-lang="ru">Каждая тонна хлопка, переработанная в Таджикистане, — это <strong>новые рабочие места</strong>, экспорт с высокой добавленной стоимостью и <strong>репутация страны</strong> на мировом рынке.</span><span data-lang="en">Every ton of cotton processed in Tajikistan means <strong>new jobs</strong>, high value-added exports and the <strong>country’s reputation</strong> on the world market.</span><span data-lang="tj">Ҳар як тонна пахтае, ки дар Тоҷикистон коркард мешавад, — ин <strong>ҷойҳои нави корӣ</strong>, содироти дорои арзиши иловагии баланд ва <strong>обрӯи кишвар</strong> дар бозори ҷаҳонӣ аст.</span></p>
+    <p class="manifesto__by"><span data-lang="ru">Позиция ассоциации · Стратегия 2024–2040</span><span data-lang="en">The association’s position · Strategy 2024–2040</span><span data-lang="tj">Мавқеи ассотсиатсия · Стратегияи 2024–2040</span></p>
+  </div>
+</section>
 <section class="section section--alt" aria-labelledby="about-title">
   <div class="wrap split">
     <div class="split__text rv">
@@ -164,7 +172,7 @@
   </div>
 </section>
 <section class="section stage section--deep" aria-labelledby="pill-title">
-  <div class="deep__grid" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"></div><div class="deep__grid" aria-hidden="true"></div>
   <div class="wrap">
     <header class="shead shead--center shead--light rv">
   <p class="kicker"><span data-lang="ru">Ключевые направления</span><span data-lang="en">Key focus areas</span><span data-lang="tj">Самтҳои асосӣ</span></p>
@@ -281,6 +289,33 @@
     </ol>
   </div>
 </section>
+<section class="section section--alt" aria-labelledby="join-title">
+  <div class="wrap">
+    <header class="shead shead--center  rv">
+  <p class="kicker"><span data-lang="ru">Вступление</span><span data-lang="en">Joining</span><span data-lang="tj">Шомилшавӣ</span></p>
+  <h2 class="shead__title"><span data-lang="ru">Три шага до членства</span><span data-lang="en">Three steps to membership</span><span data-lang="tj">Се қадам то узвият</span></h2>
+  <p class="shead__lead"><span data-lang="ru">Порядок вступления прост и одинаков для всех предприятий отрасли.</span><span data-lang="en">The procedure is simple and the same for every enterprise in the industry.</span><span data-lang="tj">Тартиби шомилшавӣ содда буда, барои ҳамаи корхонаҳои соҳа якхела аст.</span></p>
+</header>
+    <ol class="steps rv">
+      <li class="step rv" style="--d:0.00s">
+  <span class="step__num" aria-hidden="true">01</span>
+  <h3 class="step__h"><span data-lang="ru">Заявка</span><span data-lang="en">Application</span><span data-lang="tj">Ариза</span></h3>
+  <p class="step__p"><span data-lang="ru">Заполните форму на сайте или направьте письмо на <a href='mailto:chairman@tajcottex.tj'>chairman@tajcottex.tj</a>, приложив учредительные документы и краткое описание деятельности компании.</span><span data-lang="en">Fill in the website form or email <a href='mailto:chairman@tajcottex.tj'>chairman@tajcottex.tj</a> with your incorporation documents and a brief description of the company.</span><span data-lang="tj">Шакли сомонаро пур кунед ё ба <a href='mailto:chairman@tajcottex.tj'>chairman@tajcottex.tj</a> нома фиристед ва ҳуҷҷатҳои таъсисӣ ва тавсифи мухтасари фаъолияти ширкатро замима намоед.</span></p>
+</li>
+      <li class="step rv" style="--d:0.12s">
+  <span class="step__num" aria-hidden="true">02</span>
+  <h3 class="step__h"><span data-lang="ru">Рассмотрение</span><span data-lang="en">Review</span><span data-lang="tj">Баррасӣ</span></h3>
+  <p class="step__p"><span data-lang="ru">Заявку рассматривают руководящие органы ассоциации в установленном порядке. При необходимости мы свяжемся с вами для уточнений.</span><span data-lang="en">The association’s governing bodies review the application in accordance with established procedure. We will contact you if anything needs clarifying.</span><span data-lang="tj">Аризаро мақомоти роҳбарикунандаи ассотсиатсия тибқи тартиби муқарраршуда баррасӣ мекунанд. Дар ҳолати зарурат мо барои аниқсозӣ бо шумо тамос мегирем.</span></p>
+</li>
+      <li class="step rv" style="--d:0.24s">
+  <span class="step__num" aria-hidden="true">03</span>
+  <h3 class="step__h"><span data-lang="ru">Членство</span><span data-lang="en">Membership</span><span data-lang="tj">Узвият</span></h3>
+  <p class="step__p"><span data-lang="ru">С момента принятия предприятие получает доступ к сети ITMF, программам обучения, экспортной и инвестиционной поддержке ассоциации.</span><span data-lang="en">From the moment of admission the enterprise gains access to the ITMF network, training programmes and the association’s export and investment support.</span><span data-lang="tj">Аз лаҳзаи қабул корхона ба шабакаи ITMF, барномаҳои омӯзишӣ ва дастгирии содиротию сармоягузории ассотсиатсия дастрасӣ пайдо мекунад.</span></p>
+</li>
+    </ol>
+    <div class="center rv"><a class="btn btn--gold" href="contact.html"><span class="btn__label"><span data-lang="ru">Подать заявку</span><span data-lang="en">Apply now</span><span data-lang="tj">Ариза додан</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
 <section class="section" aria-labelledby="news-title">
   <div class="wrap">
     <div class="shead-row">
@@ -328,7 +363,7 @@
   <div class="ring" aria-hidden="true"><ul class="ring__track" style="--n:10"><li class="ring__face" style="--i:0"><b>ITMF</b><span><span data-lang="ru">Международная федерация производителей текстиля</span><span data-lang="en">International Textile Manufacturers Federation</span><span data-lang="tj">Федератсияи байналмилалии истеҳсолкунандагони нассоҷӣ</span></span></li><li class="ring__face" style="--i:1"><b>ICAC</b><span><span data-lang="ru">Международный консультативный комитет по хлопку</span><span data-lang="en">International Cotton Advisory Committee</span><span data-lang="tj">Кумитаи байналмилалии машваратӣ оид ба пахта</span></span></li><li class="ring__face" style="--i:2"><b>UNDP</b><span><span data-lang="ru">Программа развития ООН</span><span data-lang="en">United Nations Development Programme</span><span data-lang="tj">Барномаи рушди СММ</span></span></li><li class="ring__face" style="--i:3"><b>ITC</b><span><span data-lang="ru">Международный торговый центр</span><span data-lang="en">International Trade Centre</span><span data-lang="tj">Маркази байналмилалии савдо</span></span></li><li class="ring__face" style="--i:4"><b>EBRD</b><span><span data-lang="ru">Европейский банк реконструкции и развития</span><span data-lang="en">European Bank for Reconstruction and Development</span><span data-lang="tj">Бонки аврупоии таҷдид ва рушд</span></span></li><li class="ring__face" style="--i:5"><b>ITMF</b><span><span data-lang="ru">Международная федерация производителей текстиля</span><span data-lang="en">International Textile Manufacturers Federation</span><span data-lang="tj">Федератсияи байналмилалии истеҳсолкунандагони нассоҷӣ</span></span></li><li class="ring__face" style="--i:6"><b>ICAC</b><span><span data-lang="ru">Международный консультативный комитет по хлопку</span><span data-lang="en">International Cotton Advisory Committee</span><span data-lang="tj">Кумитаи байналмилалии машваратӣ оид ба пахта</span></span></li><li class="ring__face" style="--i:7"><b>UNDP</b><span><span data-lang="ru">Программа развития ООН</span><span data-lang="en">United Nations Development Programme</span><span data-lang="tj">Барномаи рушди СММ</span></span></li><li class="ring__face" style="--i:8"><b>ITC</b><span><span data-lang="ru">Международный торговый центр</span><span data-lang="en">International Trade Centre</span><span data-lang="tj">Маркази байналмилалии савдо</span></span></li><li class="ring__face" style="--i:9"><b>EBRD</b><span><span data-lang="ru">Европейский банк реконструкции и развития</span><span data-lang="en">European Bank for Reconstruction and Development</span><span data-lang="tj">Бонки аврупоии таҷдид ва рушд</span></span></li></ul></div>
   <ul class="sr-only"><li><b>ITMF</b> — <span data-lang="ru">Международная федерация производителей текстиля</span><span data-lang="en">International Textile Manufacturers Federation</span><span data-lang="tj">Федератсияи байналмилалии истеҳсолкунандагони нассоҷӣ</span></li><li><b>ICAC</b> — <span data-lang="ru">Международный консультативный комитет по хлопку</span><span data-lang="en">International Cotton Advisory Committee</span><span data-lang="tj">Кумитаи байналмилалии машваратӣ оид ба пахта</span></li><li><b>UNDP</b> — <span data-lang="ru">Программа развития ООН</span><span data-lang="en">United Nations Development Programme</span><span data-lang="tj">Барномаи рушди СММ</span></li><li><b>ITC</b> — <span data-lang="ru">Международный торговый центр</span><span data-lang="en">International Trade Centre</span><span data-lang="tj">Маркази байналмилалии савдо</span></li><li><b>EBRD</b> — <span data-lang="ru">Европейский банк реконструкции и развития</span><span data-lang="en">European Bank for Reconstruction and Development</span><span data-lang="tj">Бонки аврупоии таҷдид ва рушд</span></li></ul>
 </section>
-<section class="cta stage">
+<section class="cta stage" data-dust="40">
   <img class="cta__img" src="source/background.avif" alt="" aria-hidden="true" loading="lazy" data-parallax>
   <div class="cta__veil" aria-hidden="true"></div>
   <div class="wrap cta__in rv">

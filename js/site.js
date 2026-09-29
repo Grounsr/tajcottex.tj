@@ -257,12 +257,136 @@
     form.addEventListener('input', function (e) { if (e.target.getAttribute('aria-invalid') === 'true' && e.target.value.trim()) e.target.setAttribute('aria-invalid', 'false'); });
   }
 
+
+  /* ---------- headings: word-by-word reveal ---------- */
+  function splitWords() {
+    var heads = $all('.hero__title, .phero__title, .shead__title, .cycle__h, .cycle__title, .cta__title, .manifesto__text');
+    heads.forEach(function (h) {
+      $all('[data-lang]', h).forEach(function (span) {
+        var nodes = [];
+        (function walk(n) {
+          Array.prototype.forEach.call(n.childNodes, function (c) {
+            if (c.nodeType === 3) nodes.push(c); else if (c.nodeType === 1 && c.tagName !== 'BR') walk(c);
+          });
+        })(span);
+        var idx = 0;
+        nodes.forEach(function (tn) {
+          var frag = document.createDocumentFragment();
+          tn.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement('span'), inner = document.createElement('span');
+            w.className = 'w'; inner.textContent = part; inner.style.transitionDelay = (idx++ * 0.05) + 's';
+            w.appendChild(inner); frag.appendChild(w);
+          });
+          tn.parentNode.replaceChild(frag, tn);
+        });
+      });
+      h.classList.add('words');
+    });
+    if (reduceMotion || !('IntersectionObserver' in window)) { heads.forEach(function (h) { h.classList.add('is-shown'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-shown'); io.unobserve(en.target); } });
+    }, { threshold: 0.2 });
+    heads.forEach(function (h) { io.observe(h); });
+  }
+
+  /* ---------- drifting cotton fibres over dark headers ---------- */
+  function initDust() {
+    if (reduceMotion) return;
+    $all('[data-dust]').forEach(function (host) {
+      var c = document.createElement('canvas');
+      c.className = 'dust'; c.setAttribute('aria-hidden', 'true');
+      host.appendChild(c);
+      var ctx = c.getContext('2d'), w = 0, h = 0, pts = [], on = false, raf = 0, last = 0;
+      var count = +host.getAttribute('data-dust') || 60;
+      function size() {
+        w = c.width = host.clientWidth; h = c.height = host.clientHeight;
+        pts = [];
+        for (var i = 0; i < count; i++) pts.push(seed(true));
+      }
+      function seed(anywhere) {
+        var gold = Math.random() < 0.35;
+        return { x: Math.random() * w, y: anywhere ? Math.random() * h : h + 10, r: 0.6 + Math.random() * 1.8,
+          vy: 6 + Math.random() * 14, sway: 10 + Math.random() * 30, ph: Math.random() * 6.28, sp: 0.3 + Math.random() * 0.5,
+          a: 0.25 + Math.random() * 0.5, gold: gold };
+      }
+      function draw(now) {
+        if (!on) { raf = 0; return; }
+        var dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now;
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < pts.length; i++) {
+          var p = pts[i];
+          p.y -= p.vy * dt; p.ph += p.sp * dt;
+          var x = p.x + Math.sin(p.ph) * p.sway;
+          if (p.y < -10) { pts[i] = p = seed(false); x = p.x; }
+          var tw = 0.6 + 0.4 * Math.sin(p.ph * 3.1);
+          ctx.beginPath();
+          ctx.fillStyle = p.gold ? 'rgba(236,206,140,' + (p.a * tw) + ')' : 'rgba(243,236,220,' + (p.a * tw * 0.8) + ')';
+          ctx.arc(x, p.y, p.r, 0, 6.2832); ctx.fill();
+          if (p.gold && p.r > 1.6) { ctx.beginPath(); ctx.fillStyle = 'rgba(236,206,140,' + (p.a * 0.12) + ')'; ctx.arc(x, p.y, p.r * 4, 0, 6.2832); ctx.fill(); }
+        }
+        raf = requestAnimationFrame(draw);
+      }
+      function start() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(draw); } }
+      size();
+      window.addEventListener('resize', size);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) { on = en[0].isIntersecting && !document.hidden; if (on) start(); }).observe(host);
+        document.addEventListener('visibilitychange', function () { on = !document.hidden && on; if (on) start(); });
+      } else { on = true; start(); }
+    });
+  }
+
+  /* ---------- magnetic buttons & pointer spotlight ---------- */
+  function initMagnet() {
+    if (!finePointer || reduceMotion) return;
+    $all('.btn--gold').forEach(function (b) {
+      b.addEventListener('pointermove', function (e) {
+        var r = b.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) * 0.22, dy = (e.clientY - (r.top + r.height / 2)) * 0.3;
+        b.style.setProperty('--dx', dx.toFixed(1) + 'px'); b.style.setProperty('--dy', dy.toFixed(1) + 'px');
+      });
+      b.addEventListener('pointerleave', function () { b.style.setProperty('--dx', '0px'); b.style.setProperty('--dy', '0px'); });
+    });
+    var spot = document.createElement('div');
+    spot.className = 'spot'; spot.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(spot);
+    var sx = innerWidth / 2, sy = innerHeight / 2, cx = sx, cy = sy, raf = 0;
+    function tick() {
+      cx += (sx - cx) * 0.12; cy += (sy - cy) * 0.12;
+      spot.style.transform = 'translate3d(' + (cx - 400).toFixed(0) + 'px,' + (cy - 400).toFixed(0) + 'px,0)';
+      if (Math.abs(sx - cx) + Math.abs(sy - cy) > 0.5) raf = requestAnimationFrame(tick); else raf = 0;
+    }
+    window.addEventListener('pointermove', function (e) { sx = e.clientX; sy = e.clientY; spot.classList.add('is-on'); if (!raf) raf = requestAnimationFrame(tick); }, { passive: true });
+    document.addEventListener('pointerleave', function () { spot.classList.remove('is-on'); });
+  }
+
+  /* ---------- opening curtain (once per browser session) ---------- */
+  function initCurtain() {
+    var seen = false;
+    try { seen = sessionStorage.getItem('tajcottex_seen') === '1'; sessionStorage.setItem('tajcottex_seen', '1'); } catch (e) { /* private mode */ }
+    if (seen || reduceMotion) return;
+    var cur = document.createElement('div');
+    cur.className = 'curtain'; cur.setAttribute('aria-hidden', 'true');
+    var logo = document.querySelector('.brand__mark');
+    cur.innerHTML = (logo ? '<img src="' + logo.getAttribute('src') + '" alt="">' : '') + '<span class="curtain__line"></span>';
+    document.body.appendChild(cur);
+    html.classList.add('is-opening');
+    setTimeout(function () { cur.classList.add('is-done'); html.classList.remove('is-opening'); }, 950);
+    setTimeout(function () { if (cur.parentNode) cur.parentNode.removeChild(cur); }, 1900);
+  }
+
   /* ---------- init ---------- */
   function init() {
     applyLang(lang(), false);
     $all('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+    initCurtain();
+    splitWords();
     initReveal();
     initCounters();
+    initDust();
+    initMagnet();
     initTilt();
     initRail();
     initFilter();
