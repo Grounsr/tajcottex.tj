@@ -1,898 +1,415 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru" data-l="ru" data-theme="light" data-title-ru="TAJCOTTEX — Национальная ассоциация хлопка и текстиля Таджикистана" data-title-en="TAJCOTTEX — National Cotton &amp; Textile Association of Tajikistan" data-title-tj="TAJCOTTEX — Ассотсиатсияи миллии пахта ва нассоҷии Тоҷикистон">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TAJCOTTEX — Национальная ассоциация хлопка и текстиля Таджикистана</title>
-  <meta name="description" content="TAJCOTTEX — официальная отраслевая ассоциация хлопковой и текстильной промышленности Таджикистана. Инвестиции, международное партнёрство, экспортная поддержка, технологическое развитие.">
-  <link rel="icon" href="source/logo.svg" type="image/svg+xml">
-
-  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/home.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TAJCOTTEX — Национальная ассоциация хлопка и текстиля Таджикистана</title>
+<meta name="description" content="TAJCOTTEX — официальная отраслевая ассоциация хлопковой и текстильной промышленности Таджикистана: инвестиции, экспорт, технологии, международное партнёрство.">
+<meta name="theme-color" content="#0b100c">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TAJCOTTEX">
+<meta property="og:title" content="TAJCOTTEX — Национальная ассоциация хлопка и текстиля Таджикистана">
+<meta property="og:description" content="TAJCOTTEX — официальная отраслевая ассоциация хлопковой и текстильной промышленности Таджикистана: инвестиции, экспорт, технологии, международное партнёрство.">
+<link rel="icon" href="source/logo.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/noto-serif-display-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/onest-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css">
+<script>(function(h){try{h.setAttribute('data-theme',matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');var s=localStorage.getItem('tajcottex_theme');if(s==='dark'||s==='light')h.setAttribute('data-theme',s)}catch(e){}try{var m=document.cookie.match(/(?:^|; )tajcottex_lang=(ru|en|tj)(?:;|$)/);if(m){h.setAttribute('data-l',m[1]);h.lang=m[1]==='tj'?'tg':m[1]}}catch(e){}h.classList.add('js')})(document.documentElement)</script>
 </head>
-<body>
-
-<!-- ============ NAVIGATION ============ -->
-<nav class="site-nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="TAJCOTTEX Home">
-      <img src="source/logo.svg" alt="TAJCOTTEX logo" class="nav-logo-img">
-      <div>
-        <div class="nav-logo-text">TAJCOTTEX</div>
-        <div class="nav-logo-sub" data-lang="ru" class="lang-active">Хлопок и Текстиль</div>
-        <div class="nav-logo-sub" data-lang="en">Cotton &amp; Textile</div>
-        <div class="nav-logo-sub" data-lang="tj">Пахта ва Нассоҷӣ</div>
-      </div>
-    </a>
-
-    <ul class="nav-links" role="list">
-      <li><a href="index.html" class="active">
-        <span data-lang="ru" class="lang-active">Главная</span>
-        <span data-lang="en">Home</span>
-        <span data-lang="tj">Асосӣ</span>
-      </a></li>
-      <li><a href="about.html">
-        <span data-lang="ru" class="lang-active">Об ассоциации</span>
-        <span data-lang="en">About</span>
-        <span data-lang="tj">Дар бораи мо</span>
-      </a></li>
-      <li><a href="activities.html">
-        <span data-lang="ru" class="lang-active">Деятельность</span>
-        <span data-lang="en">Activities</span>
-        <span data-lang="tj">Фаъолият</span>
-      </a></li>
-      <li><a href="structure.html">
-        <span data-lang="ru" class="lang-active">Структура</span>
-        <span data-lang="en">Structure</span>
-        <span data-lang="tj">Сохтор</span>
-      </a></li>
-      <li><a href="news.html">
-        <span data-lang="ru" class="lang-active">Новости</span>
-        <span data-lang="en">News</span>
-        <span data-lang="tj">Хабарҳо</span>
-      </a></li>
-      <li><a href="contact.html">
-        <span data-lang="ru" class="lang-active">Контакты</span>
-        <span data-lang="en">Contact</span>
-        <span data-lang="tj">Тамос</span>
-      </a></li>
-    </ul>
-
-    <div class="nav-controls">
-      <div class="lang-switcher" role="group" aria-label="Language">
-        <button class="lang-btn" data-lang-btn="ru" aria-label="Русский">RU</button>
-        <button class="lang-btn" data-lang-btn="en" aria-label="English">EN</button>
-        <button class="lang-btn" data-lang-btn="tj" aria-label="Тоҷикӣ">TJ</button>
-      </div>
-      <button class="theme-toggle" data-theme-toggle aria-label="Switch theme"></button>
-      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
-      </button>
+<body class="home">
+<a class="skip" href="#main"><span data-lang="ru">Перейти к содержанию</span><span data-lang="en">Skip to content</span><span data-lang="tj">Гузаштан ба мундариҷа</span></a>
+<div class="progress" aria-hidden="true"><span data-progress></span></div>
+<header class="nav" data-nav>
+  <div class="nav__in wrap">
+    <a class="brand" href="index.html" aria-label="TAJCOTTEX"><img class="brand__mark" src="source/logo.svg" alt="" width="46" height="46"><span class="brand__text"><b>TAJCOTTEX</b><small><span data-lang="ru">Ассоциация хлопка и текстиля</span><span data-lang="en">Cotton &amp; Textile Association</span><span data-lang="tj">Ассотсиатсияи пахта ва нассоҷӣ</span></small></span></a>
+    <nav class="menu" aria-label="Main"><a href="index.html" aria-current="page"><span data-lang="ru">Главная</span><span data-lang="en">Home</span><span data-lang="tj">Асосӣ</span></a><a href="about.html"><span data-lang="ru">Об ассоциации</span><span data-lang="en">About</span><span data-lang="tj">Дар бораи мо</span></a><a href="activities.html"><span data-lang="ru">Деятельность</span><span data-lang="en">Activities</span><span data-lang="tj">Фаъолият</span></a><a href="structure.html"><span data-lang="ru">Структура</span><span data-lang="en">Structure</span><span data-lang="tj">Сохтор</span></a><a href="news.html"><span data-lang="ru">Новости</span><span data-lang="en">News</span><span data-lang="tj">Хабарҳо</span></a><a href="contact.html"><span data-lang="ru">Контакты</span><span data-lang="en">Contact</span><span data-lang="tj">Тамос</span></a></nav>
+    <div class="nav__tools">
+      <div class="langs" role="group" aria-label="Language / Язык / Забон"><button type="button" data-lang-btn="ru" lang="ru" aria-label="Русский">RU</button><button type="button" data-lang-btn="en" lang="en" aria-label="English">EN</button><button type="button" data-lang-btn="tj" lang="tg" aria-label="Тоҷикӣ">TJ</button></div>
+      <button type="button" class="theme-btn" data-theme-toggle aria-label="Theme"><svg class="ic ic--sun" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="ic ic--moon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg></button>
+      <button type="button" class="burger" data-burger aria-expanded="false" aria-controls="drawer" aria-label="Menu"><span></span><span></span></button>
     </div>
   </div>
-
-  <nav id="mobile-menu" class="nav-mobile" aria-label="Mobile navigation">
-    <ul role="list">
-      <li><a href="index.html" class="active"><span data-lang="ru" class="lang-active">Главная</span><span data-lang="en">Home</span><span data-lang="tj">Асосӣ</span></a></li>
-      <li><a href="about.html"><span data-lang="ru" class="lang-active">Об ассоциации</span><span data-lang="en">About</span><span data-lang="tj">Дар бораи мо</span></a></li>
-      <li><a href="activities.html"><span data-lang="ru" class="lang-active">Деятельность</span><span data-lang="en">Activities</span><span data-lang="tj">Фаъолият</span></a></li>
-      <li><a href="structure.html"><span data-lang="ru" class="lang-active">Структура</span><span data-lang="en">Structure</span><span data-lang="tj">Сохтор</span></a></li>
-      <li><a href="news.html"><span data-lang="ru" class="lang-active">Новости</span><span data-lang="en">News</span><span data-lang="tj">Хабарҳо</span></a></li>
-      <li><a href="contact.html"><span data-lang="ru" class="lang-active">Контакты</span><span data-lang="en">Contact</span><span data-lang="tj">Тамос</span></a></li>
-    </ul>
-    <div class="nav-mobile-controls">
-      <div class="lang-switcher">
-        <button class="lang-btn" data-lang-btn="ru">RU</button>
-        <button class="lang-btn" data-lang-btn="en">EN</button>
-        <button class="lang-btn" data-lang-btn="tj">TJ</button>
-      </div>
-    </div>
-  </nav>
-</nav>
-
-<!-- ============ HERO ============ -->
-<section class="hero" id="home" aria-label="Hero">
-  <img src="source/hero-cotton-fields.avif" alt="" class="hero-bg" aria-hidden="true" loading="eager">
-  <div class="hero-overlay" aria-hidden="true"></div>
-
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-kicker">
-          <i class="fa-solid fa-leaf" aria-hidden="true"></i>
-          <span data-lang="ru" class="lang-active">Национальная ассоциация · Таджикистан</span>
-          <span data-lang="en">National Association · Tajikistan</span>
-          <span data-lang="tj">Ассотсиатсияи миллӣ · Тоҷикистон</span>
-        </div>
-
-        <h1 class="hero-title">
-          <span data-lang="ru" class="lang-active">Хлопок и Текстиль — <em>стратегия</em> роста Таджикистана</span>
-          <span data-lang="en">Cotton &amp; Textile — <em>Tajikistan's</em> Growth Strategy</span>
-          <span data-lang="tj">Пахта ва Нассоҷӣ — <em>стратегияи</em> рушди Тоҷикистон</span>
-        </h1>
-
-        <p class="hero-desc">
-          <span data-lang="ru" class="lang-active">TAJCOTTEX — официальная отраслевая ассоциация, объединяющая производителей, инвесторов и государство для системного развития хлопковой и текстильной промышленности страны. Технологии, инвестиции, международные рынки.</span>
-          <span data-lang="en">TAJCOTTEX is the official industry association uniting producers, investors and government for the systematic development of Tajikistan's cotton and textile sector. Technology, investment and global market access.</span>
-          <span data-lang="tj">TAJCOTTEX — ассотсиатсияи расмии соҳавӣ, ки истеҳсолкунандагон, сармоягузорон ва давлатро барои рушди системавии саноати пахта ва нассоҷии кишвар муттаҳид мекунад. Технология, сармоягузорӣ ва дастрасӣ ба бозорҳои ҷаҳонӣ.</span>
-        </p>
-
-        <div class="hero-cta">
-          <a href="about.html" class="btn btn--primary btn--lg">
-            <span data-lang="ru" class="lang-active">Об ассоциации</span>
-            <span data-lang="en">About us</span>
-            <span data-lang="tj">Дар бораи мо</span>
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-          </a>
-          <a href="contact.html" class="btn btn--outline btn--lg">
-            <span data-lang="ru" class="lang-active">Стать членом</span>
-            <span data-lang="en">Become a member</span>
-            <span data-lang="tj">Аъзо шавед</span>
-          </a>
-        </div>
-
-        <div class="hero-trust">
-          <div class="hero-trust-item">
-            <div class="hero-trust-value">392K</div>
-            <div class="hero-trust-label">
-              <span data-lang="ru" class="lang-active">тонн хлопка</span>
-              <span data-lang="en">tons of cotton</span>
-              <span data-lang="tj">тонна пахта</span>
-            </div>
-          </div>
-          <div class="hero-trust-item">
-            <div class="hero-trust-value">50+</div>
-            <div class="hero-trust-label">
-              <span data-lang="ru" class="lang-active">предприятий-членов</span>
-              <span data-lang="en">member companies</span>
-              <span data-lang="tj">ширкатҳои аъзо</span>
-            </div>
-          </div>
-          <div class="hero-trust-item">
-            <div class="hero-trust-value">60+</div>
-            <div class="hero-trust-label">
-              <span data-lang="ru" class="lang-active">стран в сети ITMF</span>
-              <span data-lang="en">ITMF member countries</span>
-              <span data-lang="tj">кишварҳои шабакаи ITMF</span>
-            </div>
-          </div>
-          <div class="hero-trust-item">
-            <div class="hero-trust-value">2040</div>
-            <div class="hero-trust-label">
-              <span data-lang="ru" class="lang-active">горизонт стратегии</span>
-              <span data-lang="en">strategy horizon</span>
-              <span data-lang="tj">горизонти стратегӣ</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-visual" aria-hidden="true">
-        <div class="hero-card-stack">
-          <div class="hero-card-bg"></div>
-          <div class="hero-card-main">
-            <div class="hero-card-stat">
-              <div class="hero-card-stat-icon">
-                <i class="fa-solid fa-seedling"></i>
-              </div>
-              <div>
-                <div class="hero-card-stat-value">392 200 т</div>
-                <div class="hero-card-stat-desc">
-                  <span data-lang="ru" class="lang-active">урожай хлопка, 2025 г.</span>
-                  <span data-lang="en">cotton harvest, 2025</span>
-                  <span data-lang="tj">ҳосили пахта, 2025</span>
-                </div>
-              </div>
-            </div>
-            <div class="hero-card-stat">
-              <div class="hero-card-stat-icon hero-card-stat-icon--green">
-                <i class="fa-solid fa-globe"></i>
-              </div>
-              <div>
-                <div class="hero-card-stat-value">ITMF</div>
-                <div class="hero-card-stat-desc">
-                  <span data-lang="ru" class="lang-active">Международная федерация</span>
-                  <span data-lang="en">International Federation</span>
-                  <span data-lang="tj">Федератсияи байналмилалӣ</span>
-                </div>
-              </div>
-            </div>
-            <div class="hero-card-stat">
-              <div class="hero-card-stat-icon">
-                <i class="fa-solid fa-chart-line"></i>
-              </div>
-              <div>
-                <div class="hero-card-stat-value"><span data-lang="ru" class="lang-active">10 кластеров</span><span data-lang="en">10 clusters</span><span data-lang="tj">10 кластер</span></div>
-                <div class="hero-card-stat-desc">
-                  <span data-lang="ru" class="lang-active">текстильных кластеров к 2040</span>
-                  <span data-lang="en">textile clusters by 2040</span>
-                  <span data-lang="tj">кластерҳои нассоҷӣ то 2040</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="hero-badge-float">
-            <div class="hero-badge-dot"></div>
-            <div class="hero-badge-text">
-              <span data-lang="ru" class="lang-active">Член ITMF</span>
-              <span data-lang="en">ITMF Member</span>
-              <span data-lang="tj">Узви ITMF</span>
-              <span>
-                <span data-lang="ru" class="lang-active">с 2021 года</span>
-                <span data-lang="en">since 2021</span>
-                <span data-lang="tj">аз соли 2021</span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STATS STRIP ============ -->
-<div class="stats-strip" role="region" aria-label="Key statistics">
-  <div class="container">
-    <div class="stats-strip-item fade-up">
-      <div class="stats-strip-icon"><i class="fa-solid fa-weight-hanging" aria-hidden="true"></i></div>
-      <div class="stat-number" data-count="392" data-suffix="K">392K</div>
-      <div class="stat-label">
-        <span data-lang="ru" class="lang-active">Тонн произведено (2025)</span>
-        <span data-lang="en">Tons Produced (2025)</span>
-        <span data-lang="tj">Тонна истеҳсол (2025)</span>
-      </div>
-    </div>
-    <div class="stats-strip-item fade-up" style="transition-delay:0.1s">
-      <div class="stats-strip-icon"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></div>
-      <div class="stat-number" data-count="50" data-suffix="+">50+</div>
-      <div class="stat-label">
-        <span data-lang="ru" class="lang-active">Компаний-членов</span>
-        <span data-lang="en">Member Companies</span>
-        <span data-lang="tj">Ширкатҳои аъзо</span>
-      </div>
-    </div>
-    <div class="stats-strip-item fade-up" style="transition-delay:0.2s">
-      <div class="stats-strip-icon"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></div>
-      <div class="stat-number" data-count="10">10</div>
-      <div class="stat-label">
-        <span data-lang="ru" class="lang-active">Текстильных кластеров</span>
-        <span data-lang="en">Textile Clusters</span>
-        <span data-lang="tj">Кластерҳои нассоҷӣ</span>
-      </div>
-    </div>
-    <div class="stats-strip-item fade-up" style="transition-delay:0.3s">
-      <div class="stats-strip-icon"><i class="fa-solid fa-globe" aria-hidden="true"></i></div>
-      <div class="stat-number" data-count="60" data-suffix="+">60+</div>
-      <div class="stat-label">
-        <span data-lang="ru" class="lang-active">Стран в сети ITMF</span>
-        <span data-lang="en">ITMF Network Countries</span>
-        <span data-lang="tj">Кишварҳои шабакаи ITMF</span>
-      </div>
-    </div>
-  </div>
+</header>
+<div class="drawer" id="drawer" data-drawer hidden>
+  <nav class="drawer__links" aria-label="Mobile"><a href="index.html" aria-current="page"><span data-lang="ru">Главная</span><span data-lang="en">Home</span><span data-lang="tj">Асосӣ</span></a><a href="about.html"><span data-lang="ru">Об ассоциации</span><span data-lang="en">About</span><span data-lang="tj">Дар бораи мо</span></a><a href="activities.html"><span data-lang="ru">Деятельность</span><span data-lang="en">Activities</span><span data-lang="tj">Фаъолият</span></a><a href="structure.html"><span data-lang="ru">Структура</span><span data-lang="en">Structure</span><span data-lang="tj">Сохтор</span></a><a href="news.html"><span data-lang="ru">Новости</span><span data-lang="en">News</span><span data-lang="tj">Хабарҳо</span></a><a href="contact.html"><span data-lang="ru">Контакты</span><span data-lang="en">Contact</span><span data-lang="tj">Тамос</span></a></nav>
+  <div class="drawer__foot"><div class="langs" role="group" aria-label="Language / Язык / Забон"><button type="button" data-lang-btn="ru" lang="ru" aria-label="Русский">RU</button><button type="button" data-lang-btn="en" lang="en" aria-label="English">EN</button><button type="button" data-lang-btn="tj" lang="tg" aria-label="Тоҷикӣ">TJ</button></div><a href="mailto:chairman@tajcottex.tj">chairman@tajcottex.tj</a></div>
 </div>
-
-<!-- ============ ABOUT ============ -->
-<section class="about-section" id="about">
-  <div class="container">
-    <div class="about-split">
-      <div class="about-text fade-up">
-        <div class="section-kicker">
-          <span data-lang="ru" class="lang-active">Об ассоциации</span>
-          <span data-lang="en">About Us</span>
-          <span data-lang="tj">Дар бораи мо</span>
-        </div>
-        <div class="divider-line"></div>
-
-        <h2>
-          <span data-lang="ru" class="lang-active">Институт, определяющий развитие отрасли</span>
-          <span data-lang="en">Shaping the Future of the Industry</span>
-          <span data-lang="tj">Ассотсиатсия, ки ояндаи соҳаро месозад</span>
-        </h2>
-
-        <p>
-          <span data-lang="ru" class="lang-active">TAJCOTTEX — национальная отраслевая ассоциация, объединяющая предприятия хлопковой и текстильной промышленности Таджикистана. Мы формируем условия для устойчивого роста, системно привлекаем инвестиции и содействуем технологической модернизации отрасли.</span>
-          <span data-lang="en">TAJCOTTEX is the national industry association uniting Tajikistan's cotton and textile enterprises. We build conditions for sustainable growth, attract investment systematically and drive technological modernisation across the sector.</span>
-          <span data-lang="tj">TAJCOTTEX ассотсиатсияи миллии соҳавӣ буда, корхонаҳои соҳаи пахта ва нассоҷии Тоҷикистонро муттаҳид мекунад. Мо шароит барои рушди устувор фароҳам оварда, сармоягузориҳои мунтазамро ҷалб мекунем ва навсозии технологии соҳаро пеш мебарем.</span>
-        </p>
-
-        <p>
-          <span data-lang="ru" class="lang-active">Как аккредитованный член Международной федерации текстильного машиностроения (ITMF), мы связываем таджикских производителей с глобальной отраслевой сетью, открывая прямой доступ к рынкам и партнёрам более чем в 60 странах мира.</span>
-          <span data-lang="en">As an accredited member of the International Textile Manufacturers Federation (ITMF), we connect Tajik producers with the global industry network, providing direct access to markets and partners across 60+ countries.</span>
-          <span data-lang="tj">Ҳамчун узви ITMF, мо истеҳсолкунандагони тоҷикро бо шабакаи ҷаҳонии соҳа пайвасте, ки дастрасии мустақим ба бозорҳо ва шарикон дар зиёда аз 60 кишварро таъмин мекунад, фароҳам меорем.</span>
-        </p>
-
-        <ul class="about-checkmarks">
-          <li>
-            <span data-lang="ru" class="lang-active">Поддержка полного производственного цикла — от хлопка-сырца до готовой продукции</span>
-            <span data-lang="en">Support for the full production cycle — from raw cotton to finished goods</span>
-            <span data-lang="tj">Дастгирии давраи пурраи истеҳсолот — аз пахтаи хом то маҳсулоти тайёр</span>
-          </li>
-          <li>
-            <span data-lang="ru" class="lang-active">Содействие в получении международных сертификатов качества и устойчивости</span>
-            <span data-lang="en">Assistance obtaining international quality and sustainability certifications</span>
-            <span data-lang="tj">Мусоидат дар гирифтани сертификатҳои байналмилалии сифат</span>
-          </li>
-          <li>
-            <span data-lang="ru" class="lang-active">Экспертиза для работы с государственными программами и инвестиционными льготами</span>
-            <span data-lang="en">Expertise navigating state programs and investment incentives</span>
-            <span data-lang="tj">Таҷрибаи кор бо барномаҳои давлатӣ ва имтиёзҳои сармоягузорӣ</span>
-          </li>
-          <li>
-            <span data-lang="ru" class="lang-active">Участие в формировании Национальной стратегии 2024–2040</span>
-            <span data-lang="en">Participation in shaping the National Strategy 2024–2040</span>
-            <span data-lang="tj">Иштирок дар ташаккули Стратегияи миллии 2024–2040</span>
-          </li>
-        </ul>
-
-        <a href="about.html" class="btn btn--ghost">
-          <span data-lang="ru" class="lang-active">Подробнее об ассоциации</span>
-          <span data-lang="en">Learn more about us</span>
-          <span data-lang="tj">Бештар дар бораи мо</span>
-          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-        </a>
+<main id="main">
+<div class="scene" data-scene="cotton,yarn,fabric,globe">
+  <div class="scene__layer" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
+<div class="story stage">
+  <section class="hero" aria-labelledby="hero-title" data-dust="80" data-stage="0">
+    <img class="hero__img" src="source/hero-cotton-fields.avif" alt="" aria-hidden="true" fetchpriority="high">
+    <div class="hero__veil" aria-hidden="true"></div>
+    <div class="wrap hero__in">
+      <p class="kicker kicker--light hero__kick"><span data-lang="ru">Национальная отраслевая ассоциация · Республика Таджикистан</span><span data-lang="en">National industry association · Republic of Tajikistan</span><span data-lang="tj">Ассотсиатсияи миллии соҳавӣ · Ҷумҳурии Тоҷикистон</span></p>
+      <h1 class="hero__title" id="hero-title"><span data-lang="ru">Хлопок и текстиль Таджикистана — <em>от поля до мировых рынков</em></span><span data-lang="en">Tajikistan’s cotton and textiles — <em>from field to global markets</em></span><span data-lang="tj">Пахта ва нассоҷии Тоҷикистон — <em>аз саҳро то бозорҳои ҷаҳонӣ</em></span></h1>
+      <p class="hero__lead"><span data-lang="ru">TAJCOTTEX — официальная отраслевая ассоциация, объединяющая производителей, инвесторов и государство для системного развития хлопковой и текстильной промышленности страны.</span><span data-lang="en">TAJCOTTEX is the official industry association uniting producers, investors and government for the systematic development of the country’s cotton and textile industry.</span><span data-lang="tj">TAJCOTTEX — ассотсиатсияи расмии соҳавӣ, ки истеҳсолкунандагон, сармоягузорон ва давлатро барои рушди низомноки саноати пахта ва нассоҷии кишвар муттаҳид мекунад.</span></p>
+      <div class="hero__actions">
+        <a class="btn btn--gold" href="about.html"><span class="btn__label"><span data-lang="ru">Об ассоциации</span><span data-lang="en">About the association</span><span data-lang="tj">Дар бораи ассотсиатсия</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--line" href="contact.html"><span class="btn__label"><span data-lang="ru">Стать членом</span><span data-lang="en">Become a member</span><span data-lang="tj">Аъзо шудан</span></span></a>
       </div>
+      <dl class="hero__facts">
+        <div><dt>392&#8239;200</dt><dd><span data-lang="ru">тонн хлопка-сырца, 2025</span><span data-lang="en">tons of raw cotton, 2025</span><span data-lang="tj">тонна пахтаи хом, 2025</span></dd></div>
+        <div><dt>50+</dt><dd><span data-lang="ru">предприятий-членов</span><span data-lang="en">member companies</span><span data-lang="tj">корхонаҳои аъзо</span></dd></div>
+        <div><dt>60+</dt><dd><span data-lang="ru">стран в сети ITMF</span><span data-lang="en">countries in the ITMF network</span><span data-lang="tj">кишвар дар шабакаи ITMF</span></dd></div>
+        <div><dt>2040</dt><dd><span data-lang="ru">горизонт национальной стратегии</span><span data-lang="en">national strategy horizon</span><span data-lang="tj">уфуқи стратегияи миллӣ</span></dd></div>
+      </dl>
+    </div>
+    <a class="hero__scroll" href="#cycle-title"><span data-lang="ru">Путь хлопка</span><span data-lang="en">The cotton journey</span><span data-lang="tj">Роҳи пахта</span><span aria-hidden="true"></span></a>
+  </section>
 
-      <div class="about-visual fade-up" style="transition-delay:0.15s">
-        <img src="source/about-factory.avif" alt="Textile factory operations" class="about-visual-img">
-        <div class="about-badge-floating">
-          <div>
-            <div class="about-badge-number">2020</div>
-            <div class="about-badge-text">
-              <span data-lang="ru" class="lang-active">год основания</span>
-              <span data-lang="en">year founded</span>
-              <span data-lang="tj">соли таъсис</span>
-            </div>
-          </div>
-          <div style="width:1px; height:40px; background:var(--color-divider);"></div>
-          <div>
-            <div class="about-badge-number" style="color:var(--color-accent);">ITMF</div>
-            <div class="about-badge-text">
-              <span data-lang="ru" class="lang-active">международный член</span>
-              <span data-lang="en">international member</span>
-              <span data-lang="tj">узви байналмилалӣ</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <section class="cycle" aria-labelledby="cycle-title">
+    <ol class="cycle__rail" aria-hidden="true"><li>I</li><li>II</li><li>III</li><li>IV</li></ol>
+    <article class="cycle__step" data-step="0" data-stage="0">
+  <div class="wrap">
+    <div class="cycle__card">
+      <h2 class="cycle__title" id="cycle-title"><span data-lang="ru">От хлопка-сырца до готовой продукции</span><span data-lang="en">From raw cotton to finished goods</span><span data-lang="tj">Аз пахтаи хом то маҳсулоти тайёр</span></h2>
+      <p class="cycle__num" aria-hidden="true">01</p>
+      <p class="cycle__stage"><span data-lang="ru">Этап 1 из 4</span><span data-lang="en">Stage 1 of 4</span><span data-lang="tj">Марҳилаи 1 аз 4</span></p>
+      <h3 class="cycle__h"><span data-lang="ru">Хлопок-сырец</span><span data-lang="en">Raw cotton</span><span data-lang="tj">Пахтаи хом</span></h3>
+      <p class="cycle__p"><span data-lang="ru">Урожай 2025 года — 392 200 тонн. С поля начинается вся цепочка создания стоимости, поэтому мы помогаем хозяйствам внедрять устойчивые и органические агропрактики.</span><span data-lang="en">The 2025 harvest reached 392,200 tons. The whole value chain starts in the field, so we help farms adopt sustainable and organic practices.</span><span data-lang="tj">Ҳосили соли 2025 ба 392 200 тонна расид. Тамоми занҷираи арзиш аз саҳро оғоз мешавад, бинобар ин мо ба хоҷагиҳо дар ҷорӣ намудани амалияҳои устувор ва органикӣ кумак мекунем.</span></p>
+      
+    </div>
+  </div>
+</article>
+    <article class="cycle__step" data-step="1" data-stage="1">
+  <div class="wrap">
+    <div class="cycle__card">
+      
+      <p class="cycle__num" aria-hidden="true">02</p>
+      <p class="cycle__stage"><span data-lang="ru">Этап 2 из 4</span><span data-lang="en">Stage 2 of 4</span><span data-lang="tj">Марҳилаи 2 аз 4</span></p>
+      <h3 class="cycle__h"><span data-lang="ru">Пряжа</span><span data-lang="en">Yarn</span><span data-lang="tj">Ресмон</span></h3>
+      <p class="cycle__p"><span data-lang="ru">Волокно очищают и прядут в пряжу. Мы привлекаем на предприятия современное прядильное оборудование и технологии мировых производителей, чтобы переработка шла внутри страны.</span><span data-lang="en">Fibre is cleaned and spun into yarn. We bring modern spinning equipment and technology from global manufacturers so processing happens at home.</span><span data-lang="tj">Нахро тоза карда, ресида, ресмон тайёр мекунанд. Мо таҷҳизот ва технологияҳои муосири ресандагиро аз истеҳсолкунандагони ҷаҳонӣ ба корхонаҳо ҷалб мекунем, то коркард дар дохили кишвар сурат гирад.</span></p>
+      
+    </div>
+  </div>
+</article>
+    <article class="cycle__step" data-step="2" data-stage="2">
+  <div class="wrap">
+    <div class="cycle__card">
+      
+      <p class="cycle__num" aria-hidden="true">03</p>
+      <p class="cycle__stage"><span data-lang="ru">Этап 3 из 4</span><span data-lang="en">Stage 3 of 4</span><span data-lang="tj">Марҳилаи 3 аз 4</span></p>
+      <h3 class="cycle__h"><span data-lang="ru">Ткань</span><span data-lang="en">Fabric</span><span data-lang="tj">Матоъ</span></h3>
+      <p class="cycle__p"><span data-lang="ru">Ткачество, крашение и отделка превращают хлопок в продукт с высокой добавленной стоимостью. Национальная стратегия 2024–2040 предусматривает 10 текстильных кластеров и полный цикл переработки внутри страны.</span><span data-lang="en">Weaving, dyeing and finishing turn cotton into a high-value product. The National Strategy 2024–2040 plans 10 textile clusters and full domestic processing.</span><span data-lang="tj">Бофандагӣ, рангкунӣ ва коркарди ниҳоӣ пахтаро ба маҳсулоти дорои арзиши иловагии баланд табдил медиҳанд. Стратегияи миллии 2024–2040 таъсиси 10 кластери нассоҷӣ ва коркарди пурраи дохилиро пешбинӣ мекунад.</span></p>
+      
+    </div>
+  </div>
+</article>
+    <article class="cycle__step" data-step="3" data-stage="3">
+  <div class="wrap">
+    <div class="cycle__card">
+      
+      <p class="cycle__num" aria-hidden="true">04</p>
+      <p class="cycle__stage"><span data-lang="ru">Этап 4 из 4</span><span data-lang="en">Stage 4 of 4</span><span data-lang="tj">Марҳилаи 4 аз 4</span></p>
+      <h3 class="cycle__h"><span data-lang="ru">Мировые рынки</span><span data-lang="en">Global markets</span><span data-lang="tj">Бозорҳои ҷаҳонӣ</span></h3>
+      <p class="cycle__p"><span data-lang="ru">Через сеть ITMF предприятия-члены выходят на партнёров и покупателей более чем в 60 странах. Мы помогаем с сертификацией, выставками и экспортными процедурами.</span><span data-lang="en">Through the ITMF network, member companies reach partners and buyers in more than 60 countries. We help with certification, trade fairs and export procedures.</span><span data-lang="tj">Тавассути шабакаи ITMF ширкатҳои аъзо бо шарикон ва харидорон дар зиёда аз 60 кишвар робита пайдо мекунанд. Мо дар сертификатсия, намоишгоҳҳо ва расмиёти содирот кумак мекунем.</span></p>
+      <a class="link" href="activities.html"><span data-lang="ru">Поддержка экспорта</span><span data-lang="en">Export support</span><span data-lang="tj">Дастгирии содирот</span><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</article>
+  </section>
+</div>
+<section class="figures section" aria-labelledby="fig-title">
+  <div class="wrap">
+    <header class="shead shead--center  rv">
+  <p class="kicker"><span data-lang="ru">Отрасль в цифрах</span><span data-lang="en">The industry in numbers</span><span data-lang="tj">Соҳа дар рақамҳо</span></p>
+  <h2 class="shead__title"><span data-lang="ru">Масштаб, который мы развиваем</span><span data-lang="en">The scale we are building on</span><span data-lang="tj">Миқёсе, ки мо рушд медиҳем</span></h2>
+  
+</header>
+    <div class="figs">
+      <div class="fig  rv">
+  <div class="fig__num"><span data-count="392200">392&#8239;200</span><sup><span data-lang="ru">т</span><span data-lang="en">t</span><span data-lang="tj">т</span></sup></div>
+  <p class="fig__lab"><span data-lang="ru">хлопка-сырца собрано в 2025 году</span><span data-lang="en">tons of raw cotton harvested in 2025</span><span data-lang="tj">пахтаи хом дар соли 2025 ҷамъоварӣ шуд</span></p>
+</div>
+      <div class="fig  rv">
+  <div class="fig__num"><span data-count="50">50</span><sup>+</sup></div>
+  <p class="fig__lab"><span data-lang="ru">предприятий — членов ассоциации</span><span data-lang="en">member enterprises of the association</span><span data-lang="tj">корхона — аъзои ассотсиатсия</span></p>
+</div>
+      <div class="fig  rv">
+  <div class="fig__num"><span data-count="10">10</span><sup></sup></div>
+  <p class="fig__lab"><span data-lang="ru">текстильных кластеров по Стратегии 2024–2040</span><span data-lang="en">textile clusters under the 2024–2040 Strategy</span><span data-lang="tj">кластери нассоҷӣ тибқи Стратегияи 2024–2040</span></p>
+</div>
+      <div class="fig  rv">
+  <div class="fig__num"><span data-count="60">60</span><sup>+</sup></div>
+  <p class="fig__lab"><span data-lang="ru">стран в международной сети ITMF</span><span data-lang="en">countries in the international ITMF network</span><span data-lang="tj">кишвар дар шабакаи байналмилалии ITMF</span></p>
+</div>
     </div>
   </div>
 </section>
-
-<!-- ============ PILLARS ============ -->
-<section class="pillars-section">
-  <div class="container">
-    <div class="section-header section-header--center fade-up">
-      <div class="section-kicker">
-        <span data-lang="ru" class="lang-active">Ключевые направления</span>
-        <span data-lang="en">Key Focus Areas</span>
-        <span data-lang="tj">Самтҳои асосӣ</span>
-      </div>
-      <div class="divider-line"></div>
-      <h2>
-        <span data-lang="ru" class="lang-active">Три стратегических приоритета</span>
-        <span data-lang="en">Three Strategic Priorities</span>
-        <span data-lang="tj">Се рукни кори мо</span>
-      </h2>
-      <p>
-        <span data-lang="ru" class="lang-active">Устойчивое земледелие, глубокая переработка хлопка и интеграция в мировые рынки — три системных направления работы TAJCOTTEX.</span>
-        <span data-lang="en">Sustainable agriculture, deep cotton processing and integration into global markets — the three systemic priorities of TAJCOTTEX.</span>
-        <span data-lang="tj">Кишоварзии устувор, технологияҳои муосири коркард ва дастрасӣ ба бозорҳои ҷаҳонӣ.</span>
-      </p>
+<section class="manifesto stage" aria-label="Манифест" data-dust="50" data-stage="0" data-place="back">
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="wrap manifesto__in rv">
+    <div class="manifesto__mark" aria-hidden="true"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 7.5C6.5 8.5 5 11 5 14v3.5h5V13H7.4c.2-2 1.2-3.2 3.1-3.8zM19 7.5c-3.5 1-5 3.5-5 6.5v3.5h5V13h-2.6c.2-2 1.2-3.2 3.1-3.8z"/></svg></div>
+    <p class="manifesto__text"><span data-lang="ru">Каждая тонна хлопка, переработанная в Таджикистане, — это <strong>новые рабочие места</strong>, экспорт с высокой добавленной стоимостью и <strong>репутация страны</strong> на мировом рынке.</span><span data-lang="en">Every ton of cotton processed in Tajikistan means <strong>new jobs</strong>, high value-added exports and the <strong>country’s reputation</strong> on the world market.</span><span data-lang="tj">Ҳар як тонна пахтае, ки дар Тоҷикистон коркард мешавад, — ин <strong>ҷойҳои нави корӣ</strong>, содироти дорои арзиши иловагии баланд ва <strong>обрӯи кишвар</strong> дар бозори ҷаҳонӣ аст.</span></p>
+    <p class="manifesto__by"><span data-lang="ru">Позиция ассоциации · Стратегия 2024–2040</span><span data-lang="en">The association’s position · Strategy 2024–2040</span><span data-lang="tj">Мавқеи ассотсиатсия · Стратегияи 2024–2040</span></p>
+  </div>
+</section>
+<section class="section section--alt" aria-labelledby="about-title">
+  <div class="wrap split">
+    <div class="split__text rv">
+      <p class="kicker"><span data-lang="ru">Об ассоциации</span><span data-lang="en">About us</span><span data-lang="tj">Дар бораи мо</span></p>
+      <h2 class="shead__title" id="about-title"><span data-lang="ru">Институт, определяющий развитие отрасли</span><span data-lang="en">An institution shaping the industry</span><span data-lang="tj">Институте, ки рушди соҳаро муайян мекунад</span></h2>
+      <p class="prose"><span data-lang="ru">TAJCOTTEX — национальная отраслевая ассоциация, объединяющая предприятия хлопковой и текстильной промышленности Таджикистана. Мы формируем условия для устойчивого роста, системно привлекаем инвестиции и содействуем технологической модернизации отрасли.</span><span data-lang="en">TAJCOTTEX is the national industry association uniting Tajikistan’s cotton and textile enterprises. We build conditions for sustainable growth, attract investment systematically and support the technological modernisation of the sector.</span><span data-lang="tj">TAJCOTTEX ассотсиатсияи миллии соҳавӣ буда, корхонаҳои саноати пахта ва нассоҷии Тоҷикистонро муттаҳид мекунад. Мо барои рушди устувор шароит фароҳам меорем, сармояро мунтазам ҷалб мекунем ва ба навсозии технологии соҳа мусоидат менамоем.</span></p>
+      <p class="prose"><span data-lang="ru">Как член Международной федерации производителей текстиля (ITMF), мы связываем таджикских производителей с глобальным отраслевым сообществом и открываем доступ к рынкам и партнёрам более чем в 60 странах.</span><span data-lang="en">As a member of the International Textile Manufacturers Federation (ITMF), we connect Tajik producers with the global industry community and open access to markets and partners in more than 60 countries.</span><span data-lang="tj">Ҳамчун узви Федератсияи байналмилалии истеҳсолкунандагони нассоҷӣ (ITMF), мо истеҳсолкунандагони тоҷикро бо ҷомеаи ҷаҳонии соҳа мепайвандем ва дастрасӣ ба бозорҳо ва шариконро дар зиёда аз 60 кишвар мекушоем.</span></p>
+      <ul class="ticks">
+        <li><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-lang="ru">Поддержка полного производственного цикла — от хлопка-сырца до готовой продукции</span><span data-lang="en">Support for the full production cycle — from raw cotton to finished goods</span><span data-lang="tj">Дастгирии давраи пурраи истеҳсолот — аз пахтаи хом то маҳсулоти тайёр</span></li>
+        <li><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-lang="ru">Содействие в получении международных сертификатов качества и устойчивости</span><span data-lang="en">Assistance with international quality and sustainability certification</span><span data-lang="tj">Мусоидат дар гирифтани сертификатҳои байналмилалии сифат ва устуворӣ</span></li>
+        <li><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-lang="ru">Экспертиза в работе с государственными программами и инвестиционными льготами</span><span data-lang="en">Expertise in state programmes and investment incentives</span><span data-lang="tj">Таҷриба дар кор бо барномаҳои давлатӣ ва имтиёзҳои сармоягузорӣ</span></li>
+        <li><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-lang="ru">Участие в реализации Национальной стратегии 2024–2040</span><span data-lang="en">Participation in implementing the National Strategy 2024–2040</span><span data-lang="tj">Иштирок дар амалисозии Стратегияи миллии 2024–2040</span></li>
+      </ul>
+      <a class="btn btn--ink" href="about.html"><span class="btn__label"><span data-lang="ru">Подробнее об ассоциации</span><span data-lang="en">More about the association</span><span data-lang="tj">Бештар дар бораи ассотсиатсия</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
     </div>
-
-    <div class="pillars-grid">
-      <div class="pillar-card fade-up">
-        <img src="source/pillar-sustainable-farming.avif"
-             alt="Sustainable cotton farming in Tajikistan"
-             class="pillar-card-img"
-             loading="lazy">
-        <h3>
-          <span data-lang="ru" class="lang-active">Устойчивое земледелие</span>
-          <span data-lang="en">Sustainable Farming</span>
-          <span data-lang="tj">Кишоварзии устувор</span>
-        </h3>
-        <p>
-          <span data-lang="ru" class="lang-active">Содействие органическому выращиванию хлопка и внедрению экологичных агропрактик в сельскохозяйственных регионах Таджикистана.</span>
-          <span data-lang="en">Promoting organic cotton cultivation and eco-friendly agricultural practices across Tajikistan's farming regions.</span>
-          <span data-lang="tj">Пешбурди парвариши пахтаи органикӣ ва амалияҳои кишоварзии экологӣ дар минтақаҳои Тоҷикистон.</span>
-        </p>
-      </div>
-
-      <div class="pillar-card fade-up" style="transition-delay:0.1s">
-        <img src="source/pillar-technology.avif"
-             alt="Modern textile processing technology"
-             class="pillar-card-img"
-             loading="lazy">
-        <h3>
-          <span data-lang="ru" class="lang-active">Современная переработка</span>
-          <span data-lang="en">Modern Processing</span>
-          <span data-lang="tj">Коркарди муосир</span>
-        </h3>
-        <p>
-          <span data-lang="ru" class="lang-active">Внедрение передовых технологий для полного замкнутого цикла переработки хлопка внутри страны и производства продукции с высокой добавленной стоимостью.</span>
-          <span data-lang="en">Introducing advanced technologies for full-cycle domestic cotton processing and high-value-added production.</span>
-          <span data-lang="tj">Ҷорӣ намудани технологияҳои пешрафта барои коркарди пурраи дохилии пахта.</span>
-        </p>
-      </div>
-
-      <div class="pillar-card fade-up" style="transition-delay:0.2s">
-        <img src="source/pillar-market-access.avif"
-             alt="Global market access and partnerships"
-             class="pillar-card-img"
-             loading="lazy">
-        <h3>
-          <span data-lang="ru" class="lang-active">Глобальные партнёрства</span>
-          <span data-lang="en">Global Partnerships</span>
-          <span data-lang="tj">Шарикиҳои ҷаҳонӣ</span>
-        </h3>
-        <p>
-          <span data-lang="ru" class="lang-active">Член ITMF. Связываем таджикских производителей с международными рынками, инвесторами и технологическими партнёрами более чем в 60 странах.</span>
-          <span data-lang="en">As an ITMF member, we connect Tajik producers with international markets, investors, and technology partners in 60+ countries.</span>
-          <span data-lang="tj">Ҳамчун узви ITMF, истеҳсолкунандагони тоҷикро бо бозорҳои байналмилалӣ мепайвандем.</span>
-        </p>
-      </div>
+    <figure class="frame rv" data-tilt>
+      <div class="frame__back" aria-hidden="true"></div>
+      <img class="frame__img" src="source/about-factory.avif" alt="Ткацкий цех текстильного предприятия" loading="lazy" width="1200" height="800">
+      <figcaption class="frame__badge">
+        <span><b>2020</b><span data-lang="ru">год основания</span><span data-lang="en">founded</span><span data-lang="tj">соли таъсис</span></span>
+        <span><b>ITMF</b><span data-lang="ru">член с 2021 года</span><span data-lang="en">member since 2021</span><span data-lang="tj">узв аз соли 2021</span></span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+<section class="section stage section--deep" aria-labelledby="pill-title" data-stage="1" data-place="back">
+  <div class="aurora" aria-hidden="true"></div><div class="deep__grid" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="shead shead--center shead--light rv">
+  <p class="kicker"><span data-lang="ru">Ключевые направления</span><span data-lang="en">Key focus areas</span><span data-lang="tj">Самтҳои асосӣ</span></p>
+  <h2 class="shead__title"><span data-lang="ru">Три стратегических приоритета</span><span data-lang="en">Three strategic priorities</span><span data-lang="tj">Се афзалияти стратегӣ</span></h2>
+  <p class="shead__lead"><span data-lang="ru">Устойчивое земледелие, глубокая переработка хлопка и интеграция в мировые рынки — три системных направления работы TAJCOTTEX.</span><span data-lang="en">Sustainable agriculture, deep cotton processing and integration into global markets — the three systemic priorities of TAJCOTTEX.</span><span data-lang="tj">Кишоварзии устувор, коркарди амиқи пахта ва ҳамгироӣ ба бозорҳои ҷаҳонӣ — се самти низомноки фаъолияти TAJCOTTEX.</span></p>
+</header>
+    <div class="cards cards--3 perspective">
+      <article class="card card--pillar rv" style="--d:0s" data-tilt>
+  <span class="card__num" aria-hidden="true">I</span>
+  <span class="medal " aria-hidden="true"><span class="medal__face"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19c0-8 5-13 14-14-.5 9-5.5 14-13 14z"/><path d="M5 19l7-7"/></svg></span></span>
+  <h3 class="card__h"><span data-lang="ru">Устойчивое земледелие</span><span data-lang="en">Sustainable farming</span><span data-lang="tj">Кишоварзии устувор</span></h3>
+  <p class="card__p"><span data-lang="ru">Содействие органическому выращиванию хлопка и внедрению экологичных агропрактик в хлопководческих регионах Таджикистана.</span><span data-lang="en">Promoting organic cotton cultivation and eco-friendly agricultural practices across Tajikistan’s cotton-growing regions.</span><span data-lang="tj">Мусоидат ба парвариши органикии пахта ва ҷорӣ намудани амалияҳои экологии кишоварзӣ дар минтақаҳои пахтакори Тоҷикистон.</span></p>
+  <span class="card__glare" aria-hidden="true"></span>
+</article>
+      <article class="card card--pillar rv" style="--d:0.1s" data-tilt>
+  <span class="card__num" aria-hidden="true">II</span>
+  <span class="medal " aria-hidden="true"><span class="medal__face"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v18"/><path d="M8.5 6.5c2.3 1 4.7 1 7 0M8 10c2.7 1.2 5.3 1.2 8 0M8 14c2.7 1.2 5.3 1.2 8 0M8.5 17.5c2.3 1 4.7 1 7 0"/><path d="M9 4.5h6M9 19.5h6"/></svg></span></span>
+  <h3 class="card__h"><span data-lang="ru">Современная переработка</span><span data-lang="en">Modern processing</span><span data-lang="tj">Коркарди муосир</span></h3>
+  <p class="card__p"><span data-lang="ru">Внедрение передовых технологий для полного цикла переработки хлопка внутри страны и выпуска продукции с высокой добавленной стоимостью.</span><span data-lang="en">Introducing advanced technologies for full-cycle domestic cotton processing and high value-added production.</span><span data-lang="tj">Ҷорӣ намудани технологияҳои пешрафта барои давраи пурраи коркарди пахта дар дохили кишвар ва истеҳсоли маҳсулоти дорои арзиши иловагии баланд.</span></p>
+  <span class="card__glare" aria-hidden="true"></span>
+</article>
+      <article class="card card--pillar rv" style="--d:0.2s" data-tilt>
+  <span class="card__num" aria-hidden="true">III</span>
+  <span class="medal " aria-hidden="true"><span class="medal__face"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 2.8 15.4 0 18M12 3c-2.8 2.6-2.8 15.4 0 18"/></svg></span></span>
+  <h3 class="card__h"><span data-lang="ru">Глобальные партнёрства</span><span data-lang="en">Global partnerships</span><span data-lang="tj">Шарикиҳои ҷаҳонӣ</span></h3>
+  <p class="card__p"><span data-lang="ru">Член ITMF. Связываем таджикских производителей с международными рынками, инвесторами и технологическими партнёрами более чем в 60 странах.</span><span data-lang="en">An ITMF member, we connect Tajik producers with international markets, investors and technology partners in more than 60 countries.</span><span data-lang="tj">Узви ITMF. Истеҳсолкунандагони тоҷикро бо бозорҳои байналмилалӣ, сармоягузорон ва шарикони технологӣ дар зиёда аз 60 кишвар мепайвандем.</span></p>
+  <span class="card__glare" aria-hidden="true"></span>
+</article>
     </div>
   </div>
 </section>
-
-<!-- ============ SERVICES ============ -->
-<section class="services-section" id="services">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-kicker">
-        <span data-lang="ru" class="lang-active">Для участников</span>
-        <span data-lang="en">For Members</span>
-        <span data-lang="tj">Барои аъзоён</span>
-      </div>
-      <div class="divider-line"></div>
-      <h2>
-        <span data-lang="ru" class="lang-active">Возможности для членов ассоциации</span>
-        <span data-lang="en">What Membership Provides</span>
-        <span data-lang="tj">Он чи мо ба аъзо пешниҳод мекунем</span>
-      </h2>
-      <p>
-        <span data-lang="ru" class="lang-active">Системная институциональная поддержка по четырём ключевым направлениям для предприятий хлопковой и текстильной отрасли.</span>
-        <span data-lang="en">Systemic institutional support across four key areas for enterprises in the cotton and textile sector.</span>
-        <span data-lang="tj">Дастгирии ҳамаҷониба барои иштирокчиёни соҳа дар ҳар марҳила.</span>
-      </p>
+<section class="section" aria-labelledby="svc-title">
+  <div class="wrap">
+    <div class="shead-row">
+      <header class="shead  rv">
+  <p class="kicker"><span data-lang="ru">Для членов ассоциации</span><span data-lang="en">For members</span><span data-lang="tj">Барои аъзоён</span></p>
+  <h2 class="shead__title"><span data-lang="ru">Что даёт членство</span><span data-lang="en">What membership provides</span><span data-lang="tj">Узвият чӣ медиҳад</span></h2>
+  <p class="shead__lead"><span data-lang="ru">Системная институциональная поддержка по четырём ключевым направлениям для предприятий хлопковой и текстильной отрасли.</span><span data-lang="en">Systemic institutional support across four key areas for enterprises of the cotton and textile sector.</span><span data-lang="tj">Дастгирии низомноки институтсионалӣ дар чор самти асосӣ барои корхонаҳои соҳаи пахта ва нассоҷӣ.</span></p>
+</header>
+      <div class="rv"><a class="btn btn--ink" href="activities.html"><span class="btn__label"><span data-lang="ru">Все направления</span><span data-lang="en">All activities</span><span data-lang="tj">Ҳамаи самтҳо</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></div>
     </div>
-
-    <div class="services-grid">
-      <div class="service-card fade-up">
-        <img src="source/service-investment.avif" alt="" class="service-card-img" loading="lazy">
-        <div class="service-body">
-          <h3>
-            <span data-lang="ru" class="lang-active">Привлечение инвестиций</span>
-            <span data-lang="en">Investment Attraction</span>
-            <span data-lang="tj">Ҷалби сармоягузорӣ</span>
-          </h3>
-          <p>
-            <span data-lang="ru" class="lang-active">Содействие в установлении связей с международными инвесторами и партнёрами для взаимовыгодного развития предприятий отрасли.</span>
-            <span data-lang="en">Facilitating connections with international investors and partners for mutually beneficial enterprise development.</span>
-            <span data-lang="tj">Мусоидат дар ирқоми робитаҳо бо сармоягузорони байналмилалӣ.</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="service-card fade-up" style="transition-delay:0.1s">
-        <img src="source/service-training.avif" alt="" class="service-card-img" loading="lazy">
-        <div class="service-body">
-          <h3>
-            <span data-lang="ru" class="lang-active">Обучение и квалификация</span>
-            <span data-lang="en">Training &amp; Development</span>
-            <span data-lang="tj">Омӯзиш ва такмили ихтисос</span>
-          </h3>
-          <p>
-            <span data-lang="ru" class="lang-active">Профессиональные программы для специалистов отрасли — от технологов до менеджеров по экспорту, с акцентом на современные технологии.</span>
-            <span data-lang="en">Professional programs for industry specialists — from technologists to export managers, with a focus on modern textile technologies.</span>
-            <span data-lang="tj">Барномаҳои касбӣ барои мутахассисони соҳа бо тамаркуз ба технологияҳои муосир.</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="service-card fade-up" style="transition-delay:0.15s">
-        <img src="source/service-export.avif" alt="" class="service-card-img" loading="lazy">
-        <div class="service-body">
-          <h3>
-            <span data-lang="ru" class="lang-active">Поддержка экспорта</span>
-            <span data-lang="en">Export Support</span>
-            <span data-lang="tj">Дастгирии содирот</span>
-          </h3>
-          <p>
-            <span data-lang="ru" class="lang-active">Помощь в выходе на международные рынки: сертификация, таможенные процедуры, поиск покупателей и участие в международных выставках.</span>
-            <span data-lang="en">Assistance entering international markets: certification, customs, buyer outreach, and international trade fair participation.</span>
-            <span data-lang="tj">Кумак дар ворид шудан ба бозорҳои байналмилалӣ: сертификатсия, гумрук, ҷустуҷӯи харидорон.</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="service-card fade-up" style="transition-delay:0.2s">
-        <img src="source/service-technology.avif" alt="" class="service-card-img" loading="lazy">
-        <div class="service-body">
-          <h3>
-            <span data-lang="ru" class="lang-active">Передача технологий</span>
-            <span data-lang="en">Technology Transfer</span>
-            <span data-lang="tj">Интиқоли технология</span>
-          </h3>
-          <p>
-            <span data-lang="ru" class="lang-active">Внедрение новейшего текстильного оборудования и производственных методологий от мировых лидеров отрасли в рамках целевых программ.</span>
-            <span data-lang="en">Deploying cutting-edge textile machinery and production methodologies from global industry leaders via targeted programs.</span>
-            <span data-lang="tj">Ҷорӣ намудани таҷҳизоти нав ва методологияҳои истеҳсолот аз пешвоёни ҷаҳонӣ.</span>
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin-top: var(--space-10); text-align:center;">
-      <a href="activities.html" class="btn btn--outline-dark btn--lg">
-        <span data-lang="ru" class="lang-active">Все направления деятельности</span>
-        <span data-lang="en">All Activities</span>
-        <span data-lang="tj">Ҳамаи фаъолиятҳо</span>
-        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-      </a>
+    <div class="cards cards--4 perspective">
+      <article class="card card--service rv" style="--d:0s" data-tilt>
+  <span class="medal medal--sm" aria-hidden="true"><span class="medal__face"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20h16"/><path d="M6.5 16l4-4.5 3 3L19 8"/><path d="M15 8h4v4"/></svg></span></span>
+  <h3 class="card__h"><span data-lang="ru">Привлечение инвестиций</span><span data-lang="en">Investment attraction</span><span data-lang="tj">Ҷалби сармоягузорӣ</span></h3>
+  <p class="card__p"><span data-lang="ru">Связи с международными инвесторами и партнёрами для взаимовыгодного развития предприятий отрасли.</span><span data-lang="en">Connections with international investors and partners for the mutually beneficial development of enterprises.</span><span data-lang="tj">Робита бо сармоягузорон ва шарикони байналмилалӣ барои рушди судманди тарафайни корхонаҳои соҳа.</span></p>
+  <span class="card__glare" aria-hidden="true"></span>
+</article>
+      <article class="card card--service rv" style="--d:0.08s" data-tilt>
+  <span class="medal medal--sm" aria-hidden="true"><span class="medal__face"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2.5 9.5L12 5l9.5 4.5L12 14z"/><path d="M6.5 11.5v4.3c3.2 2.4 7.8 2.4 11 0v-4.3"/><path d="M21.5 9.5v5"/></svg></span></span>
+  <h3 class="card__h"><span data-lang="ru">Обучение и квалификация</span><span data-lang="en">Training &amp; qualification</span><span data-lang="tj">Омӯзиш ва такмили ихтисос</span></h3>
+  <p class="card__p"><span data-lang="ru">Профессиональные программы для специалистов — от технологов до менеджеров по экспорту.</span><span data-lang="en">Professional programmes for specialists — from technologists to export managers.</span><span data-lang="tj">Барномаҳои касбӣ барои мутахассисон — аз технологҳо то менеҷерони содирот.</span></p>
+  <span class="card__glare" aria-hidden="true"></span>
+</article>
+      <article class="card card--service rv" style="--d:0.16s" data-tilt>
+  <span class="medal medal--sm" aria-hidden="true"><span class="medal__face"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 17.5h13l3.5-4H6.5z"/><path d="M7 13.5V9h5v4.5M12 11h4v2.5"/><path d="M2.5 20.5c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/></svg></span></span>
+  <h3 class="card__h"><span data-lang="ru">Поддержка экспорта</span><span data-lang="en">Export support</span><span data-lang="tj">Дастгирии содирот</span></h3>
+  <p class="card__p"><span data-lang="ru">Сертификация, таможенные процедуры, поиск покупателей и участие в международных выставках.</span><span data-lang="en">Certification, customs procedures, buyer search and participation in international trade fairs.</span><span data-lang="tj">Сертификатсия, расмиёти гумрукӣ, ҷустуҷӯи харидорон ва иштирок дар намоишгоҳҳои байналмилалӣ.</span></p>
+  <span class="card__glare" aria-hidden="true"></span>
+</article>
+      <article class="card card--service rv" style="--d:0.24s" data-tilt>
+  <span class="medal medal--sm" aria-hidden="true"><span class="medal__face"><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5" rx=".5"/><path d="M9.5 3.5v3M14.5 3.5v3M9.5 17.5v3M14.5 17.5v3M3.5 9.5h3M3.5 14.5h3M17.5 9.5h3M17.5 14.5h3"/></svg></span></span>
+  <h3 class="card__h"><span data-lang="ru">Передача технологий</span><span data-lang="en">Technology transfer</span><span data-lang="tj">Интиқоли технология</span></h3>
+  <p class="card__p"><span data-lang="ru">Внедрение современного текстильного оборудования и производственных методик мировых лидеров отрасли.</span><span data-lang="en">Deployment of modern textile machinery and production methods from global industry leaders.</span><span data-lang="tj">Ҷорӣ намудани таҷҳизоти муосири нассоҷӣ ва усулҳои истеҳсолии пешвоёни ҷаҳонии соҳа.</span></p>
+  <span class="card__glare" aria-hidden="true"></span>
+</article>
     </div>
   </div>
 </section>
-
-<!-- ============ NEWS PREVIEW ============ -->
-<section class="news-preview-section" id="news">
-  <div class="container">
-    <div class="section-header fade-up" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:var(--space-4);">
-      <div>
-        <div class="section-kicker">
-          <span data-lang="ru" class="lang-active">Новости и события</span>
-          <span data-lang="en">News &amp; Events</span>
-          <span data-lang="tj">Хабарҳо ва рӯйдодҳо</span>
-        </div>
-        <div class="divider-line"></div>
-        <h2>
-          <span data-lang="ru" class="lang-active">Актуальные новости отрасли</span>
-          <span data-lang="en">Latest Industry News</span>
-          <span data-lang="tj">Хабарҳои охирини соҳа</span>
-        </h2>
-      </div>
-      <a href="news.html" class="link-arrow" style="white-space:nowrap; flex-shrink:0;">
-        <span data-lang="ru" class="lang-active">Все новости</span>
-        <span data-lang="en">All News</span>
-        <span data-lang="tj">Ҳамаи хабарҳо</span>
-        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-      </a>
+<section class="section section--alt" aria-labelledby="path-title">
+  <div class="wrap">
+    <header class="shead shead--center  rv">
+  <p class="kicker"><span data-lang="ru">Путь ассоциации</span><span data-lang="en">Our journey</span><span data-lang="tj">Роҳи ассотсиатсия</span></p>
+  <h2 class="shead__title"><span data-lang="ru">От основания — к горизонту 2040</span><span data-lang="en">From foundation to the 2040 horizon</span><span data-lang="tj">Аз таъсис — то уфуқи 2040</span></h2>
+  
+</header>
+    <ol class="miles">
+      <li class="mile rv">
+  <span class="mile__year">2020</span>
+  <span class="mile__dot" aria-hidden="true"></span>
+  <h3 class="mile__h"><span data-lang="ru">Основание</span><span data-lang="en">Founded</span><span data-lang="tj">Таъсис</span></h3>
+  <p class="mile__p"><span data-lang="ru">Ведущие предприятия отрасли создали единую институциональную платформу.</span><span data-lang="en">Leading enterprises created a single institutional platform for the industry.</span><span data-lang="tj">Корхонаҳои пешбари соҳа платформаи ягонаи институтсионалӣ таъсис доданд.</span></p>
+</li>
+      <li class="mile rv">
+  <span class="mile__year">2021</span>
+  <span class="mile__dot" aria-hidden="true"></span>
+  <h3 class="mile__h"><span data-lang="ru">Членство в ITMF</span><span data-lang="en">ITMF membership</span><span data-lang="tj">Узвият дар ITMF</span></h3>
+  <p class="mile__p"><span data-lang="ru">Доступ к глобальной отраслевой сети более чем в 60 странах.</span><span data-lang="en">Access to a global industry network in more than 60 countries.</span><span data-lang="tj">Дастрасӣ ба шабакаи ҷаҳонии соҳа дар зиёда аз 60 кишвар.</span></p>
+</li>
+      <li class="mile rv">
+  <span class="mile__year">2023</span>
+  <span class="mile__dot" aria-hidden="true"></span>
+  <h3 class="mile__h"><span data-lang="ru">Программы обучения</span><span data-lang="en">Training programmes</span><span data-lang="tj">Барномаҳои омӯзишӣ</span></h3>
+  <p class="mile__p"><span data-lang="ru">Первые программы для специалистов совместно с международными партнёрами.</span><span data-lang="en">First programmes for specialists together with international partners.</span><span data-lang="tj">Аввалин барномаҳо барои мутахассисон якҷоя бо шарикони байналмилалӣ.</span></p>
+</li>
+      <li class="mile rv">
+  <span class="mile__year">2024</span>
+  <span class="mile__dot" aria-hidden="true"></span>
+  <h3 class="mile__h"><span data-lang="ru">Стратегия 2024–2040</span><span data-lang="en">Strategy 2024–2040</span><span data-lang="tj">Стратегияи 2024–2040</span></h3>
+  <p class="mile__p"><span data-lang="ru">Участие в разработке национальной стратегии развития текстильной отрасли.</span><span data-lang="en">Participation in drafting the national textile industry development strategy.</span><span data-lang="tj">Иштирок дар таҳияи стратегияи миллии рушди соҳаи нассоҷӣ.</span></p>
+</li>
+      <li class="mile rv">
+  <span class="mile__year">2025</span>
+  <span class="mile__dot" aria-hidden="true"></span>
+  <h3 class="mile__h"><span data-lang="ru">Международный форум</span><span data-lang="en">International forum</span><span data-lang="tj">Форуми байналмилалӣ</span></h3>
+  <p class="mile__p"><span data-lang="ru">I Международный текстильный форум: более 200 участников из 18 стран.</span><span data-lang="en">First International Textile Forum: over 200 participants from 18 countries.</span><span data-lang="tj">Аввалин Форуми байналмилалии нассоҷӣ: зиёда аз 200 иштирокчӣ аз 18 кишвар.</span></p>
+</li>
+      <li class="mile mile--goal rv">
+  <span class="mile__year">2040</span>
+  <span class="mile__dot" aria-hidden="true"></span>
+  <h3 class="mile__h"><span data-lang="ru">Цель стратегии</span><span data-lang="en">Strategy goal</span><span data-lang="tj">Ҳадафи стратегия</span></h3>
+  <p class="mile__p"><span data-lang="ru">10 текстильных кластеров и полный цикл переработки хлопка внутри страны.</span><span data-lang="en">10 textile clusters and a full domestic cotton processing cycle.</span><span data-lang="tj">10 кластери нассоҷӣ ва давраи пурраи коркарди пахта дар дохили кишвар.</span></p>
+</li>
+    </ol>
+  </div>
+</section>
+<section class="section section--alt" aria-labelledby="join-title">
+  <div class="wrap">
+    <header class="shead shead--center  rv">
+  <p class="kicker"><span data-lang="ru">Вступление</span><span data-lang="en">Joining</span><span data-lang="tj">Шомилшавӣ</span></p>
+  <h2 class="shead__title"><span data-lang="ru">Три шага до членства</span><span data-lang="en">Three steps to membership</span><span data-lang="tj">Се қадам то узвият</span></h2>
+  <p class="shead__lead"><span data-lang="ru">Порядок вступления прост и одинаков для всех предприятий отрасли.</span><span data-lang="en">The procedure is simple and the same for every enterprise in the industry.</span><span data-lang="tj">Тартиби шомилшавӣ содда буда, барои ҳамаи корхонаҳои соҳа якхела аст.</span></p>
+</header>
+    <ol class="steps rv">
+      <li class="step rv" style="--d:0.00s">
+  <span class="step__num" aria-hidden="true">01</span>
+  <h3 class="step__h"><span data-lang="ru">Заявка</span><span data-lang="en">Application</span><span data-lang="tj">Ариза</span></h3>
+  <p class="step__p"><span data-lang="ru">Заполните форму на сайте или направьте письмо на <a href='mailto:chairman@tajcottex.tj'>chairman@tajcottex.tj</a>, приложив учредительные документы и краткое описание деятельности компании.</span><span data-lang="en">Fill in the website form or email <a href='mailto:chairman@tajcottex.tj'>chairman@tajcottex.tj</a> with your incorporation documents and a brief description of the company.</span><span data-lang="tj">Шакли сомонаро пур кунед ё ба <a href='mailto:chairman@tajcottex.tj'>chairman@tajcottex.tj</a> нома фиристед ва ҳуҷҷатҳои таъсисӣ ва тавсифи мухтасари фаъолияти ширкатро замима намоед.</span></p>
+</li>
+      <li class="step rv" style="--d:0.12s">
+  <span class="step__num" aria-hidden="true">02</span>
+  <h3 class="step__h"><span data-lang="ru">Рассмотрение</span><span data-lang="en">Review</span><span data-lang="tj">Баррасӣ</span></h3>
+  <p class="step__p"><span data-lang="ru">Заявку рассматривают руководящие органы ассоциации в установленном порядке. При необходимости мы свяжемся с вами для уточнений.</span><span data-lang="en">The association’s governing bodies review the application in accordance with established procedure. We will contact you if anything needs clarifying.</span><span data-lang="tj">Аризаро мақомоти роҳбарикунандаи ассотсиатсия тибқи тартиби муқарраршуда баррасӣ мекунанд. Дар ҳолати зарурат мо барои аниқсозӣ бо шумо тамос мегирем.</span></p>
+</li>
+      <li class="step rv" style="--d:0.24s">
+  <span class="step__num" aria-hidden="true">03</span>
+  <h3 class="step__h"><span data-lang="ru">Членство</span><span data-lang="en">Membership</span><span data-lang="tj">Узвият</span></h3>
+  <p class="step__p"><span data-lang="ru">С момента принятия предприятие получает доступ к сети ITMF, программам обучения, экспортной и инвестиционной поддержке ассоциации.</span><span data-lang="en">From the moment of admission the enterprise gains access to the ITMF network, training programmes and the association’s export and investment support.</span><span data-lang="tj">Аз лаҳзаи қабул корхона ба шабакаи ITMF, барномаҳои омӯзишӣ ва дастгирии содиротию сармоягузории ассотсиатсия дастрасӣ пайдо мекунад.</span></p>
+</li>
+    </ol>
+    <div class="center rv"><a class="btn btn--gold" href="contact.html"><span class="btn__label"><span data-lang="ru">Подать заявку</span><span data-lang="en">Apply now</span><span data-lang="tj">Ариза додан</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+<section class="section" aria-labelledby="news-title">
+  <div class="wrap">
+    <div class="shead-row">
+      <header class="shead  rv">
+  <p class="kicker"><span data-lang="ru">Новости и события</span><span data-lang="en">News &amp; events</span><span data-lang="tj">Хабарҳо ва рӯйдодҳо</span></p>
+  <h2 class="shead__title"><span data-lang="ru">Актуальное в отрасли</span><span data-lang="en">Latest from the industry</span><span data-lang="tj">Навигариҳои соҳа</span></h2>
+  
+</header>
+      <div class="rv"><a class="btn btn--ink" href="news.html"><span class="btn__label"><span data-lang="ru">Все новости</span><span data-lang="en">All news</span><span data-lang="tj">Ҳамаи хабарҳо</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></div>
     </div>
-
-    <div class="news-preview-grid">
-      <article class="news-card-large fade-up">
-        <div class="news-card-img-wrap">
-          <img src="source/news-cotton.avif" alt="Cotton production" class="news-card-image" loading="lazy">
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-meta">
-            <span class="tag">
-              <span data-lang="ru" class="lang-active">Производство</span>
-              <span data-lang="en">Production</span>
-              <span data-lang="tj">Истеҳсолот</span>
-            </span>
-            <span class="news-card-date">
-              <span data-lang="ru" class="lang-active">Январь 2026</span>
-              <span data-lang="en">January 2026</span>
-              <span data-lang="tj">Январи 2026</span>
-            </span>
-          </div>
-          <h3>
-            <span data-lang="ru" class="lang-active">Производство хлопка в Таджикистане достигло 392 200 тонн в 2025 году</span>
-            <span data-lang="en">Tajikistan Cotton Production Reaches 392,200 Tons in 2025</span>
-            <span data-lang="tj">Истеҳсоли пахта дар Тоҷикистон дар соли 2025 ба 392 200 тонна расид</span>
-          </h3>
-          <p>
-            <span data-lang="ru" class="lang-active">Таджикистан превысил плановые показатели производства хлопка, продемонстрировав значительный прирост в ключевых регионах страны. Рекордный урожай открывает новые возможности для переработки и экспорта.</span>
-            <span data-lang="en">Tajikistan exceeded planned cotton production targets, recording strong performance across key regions. The record harvest opens new opportunities for processing and export.</span>
-            <span data-lang="tj">Тоҷикистон аз нишондодҳои нақшавии истеҳсоли пахта зиёд шуда, имкониятҳои нав барои коркард ва содирот кушод.</span>
-          </p>
-          <a href="news/article-1.html" class="news-card-link">
-            <span data-lang="ru" class="lang-active">Читать статью</span>
-            <span data-lang="en">Read article</span>
-            <span data-lang="tj">Мақоларо хонед</span>
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-          </a>
+    <div class="news-grid">
+      <article class="post post--lead rv" data-tilt>
+        <a class="post__media" href="news/article-1.html" tabindex="-1" aria-hidden="true"><img src="source/news-cotton.avif" alt="" loading="lazy"></a>
+        <div class="post__body">
+          <p class="post__meta"><span class="tag"><span data-lang="ru">Производство</span><span data-lang="en">Production</span><span data-lang="tj">Истеҳсолот</span></span><time datetime="2026-01"><span data-lang="ru">Январь 2026</span><span data-lang="en">January 2026</span><span data-lang="tj">Январи 2026</span></time></p>
+          <h3 class="post__h"><a href="news/article-1.html"><span data-lang="ru">Производство хлопка в Таджикистане достигло 392 200 тонн в 2025 году</span><span data-lang="en">Tajikistan’s cotton production reached 392,200 tons in 2025</span><span data-lang="tj">Истеҳсоли пахта дар Тоҷикистон дар соли 2025 ба 392 200 тонна расид</span></a></h3>
+          <p class="post__p"><span data-lang="ru">Плановые показатели превышены. Рекордный урожай открывает новые возможности для переработки и экспорта.</span><span data-lang="en">Planned targets were exceeded. The record harvest opens new opportunities for processing and export.</span><span data-lang="tj">Нишондодҳои нақшавӣ иҷро гардиданд. Ҳосили рекордӣ барои коркард ва содирот имкониятҳои нав мекушояд.</span></p>
         </div>
       </article>
-
-      <article class="news-card-small fade-up" style="transition-delay:0.1s">
-        <div class="news-card-img-wrap">
-          <img src="source/news-forum.avif" alt="International Textile Forum" class="news-card-image" loading="lazy">
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-meta">
-            <span class="tag tag--accent">
-              <span data-lang="ru" class="lang-active">Форум</span>
-              <span data-lang="en">Forum</span>
-              <span data-lang="tj">Форум</span>
-            </span>
-            <span class="news-card-date">
-              <span data-lang="ru" class="lang-active">Июнь 2025</span>
-              <span data-lang="en">June 2025</span>
-              <span data-lang="tj">Июни 2025</span>
-            </span>
-          </div>
-          <h3>
-            <span data-lang="ru" class="lang-active">I Международный текстильный форум в Таджикистане</span>
-            <span data-lang="en">First International Textile Forum in Tajikistan</span>
-            <span data-lang="tj">Аввалин Форуми байналмилалии нассоҷӣ дар Тоҷикистон</span>
-          </h3>
-          <p>
-            <span data-lang="ru" class="lang-active">TAJCOTTEX стал соорганизатором крупного отраслевого мероприятия с участием мировых производителей текстильного оборудования.</span>
-            <span data-lang="en">TAJCOTTEX co-organised a major industry event with global textile equipment manufacturers.</span>
-            <span data-lang="tj">TAJCOTTEX ташкилкунандаи чорабинии бузурги соҳавӣ бо иштироки истеҳсолкунандагони ҷаҳонӣ шуд.</span>
-          </p>
-          <a href="news/article-2.html" class="news-card-link">
-            <span data-lang="ru" class="lang-active">Читать статью</span>
-            <span data-lang="en">Read article</span>
-            <span data-lang="tj">Мақоларо хонед</span>
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-          </a>
+      <article class="post rv" style="--d:.08s" data-tilt>
+        <a class="post__media post__media--cover cover cover--forum" href="news/article-2.html" tabindex="-1" aria-hidden="true"><span class="cover__big">I</span><span class="cover__cap"><span data-lang="ru">Международный текстильный форум<br>Душанбе · 2025</span><span data-lang="en">International Textile Forum<br>Dushanbe · 2025</span><span data-lang="tj">Форуми байналмилалии нассоҷӣ<br>Душанбе · 2025</span></span></a>
+        <div class="post__body">
+          <p class="post__meta"><span class="tag"><span data-lang="ru">Форум</span><span data-lang="en">Forum</span><span data-lang="tj">Форум</span></span><time datetime="2025-06"><span data-lang="ru">Июнь 2025</span><span data-lang="en">June 2025</span><span data-lang="tj">Июни 2025</span></time></p>
+          <h3 class="post__h"><a href="news/article-2.html"><span data-lang="ru">I Международный текстильный форум в Таджикистане</span><span data-lang="en">First International Textile Forum in Tajikistan</span><span data-lang="tj">Аввалин Форуми байналмилалии нассоҷӣ дар Тоҷикистон</span></a></h3>
         </div>
       </article>
-
-      <article class="news-card-small fade-up" style="transition-delay:0.2s">
-        <div class="news-card-img-wrap">
-          <img src="source/news-strategy.avif" alt="National strategy signing" class="news-card-image" loading="lazy">
-        </div>
-        <div class="news-card-body">
-          <div class="news-card-meta">
-            <span class="tag">
-              <span data-lang="ru" class="lang-active">Стратегия</span>
-              <span data-lang="en">Strategy</span>
-              <span data-lang="tj">Стратегия</span>
-            </span>
-            <span class="news-card-date">2024</span>
-          </div>
-          <h3>
-            <span data-lang="ru" class="lang-active">Запуск Национальной стратегии развития текстильной отрасли 2024–2040</span>
-            <span data-lang="en">Launch of National Textile Strategy 2024–2040</span>
-            <span data-lang="tj">Оғози Стратегияи миллии рушди соҳаи нассоҷӣ 2024–2040</span>
-          </h3>
-          <p>
-            <span data-lang="ru" class="lang-active">Новая стратегия предусматривает создание 10 текстильных кластеров и полный цикл внутренней переработки хлопка к 2040 году.</span>
-            <span data-lang="en">The strategy envisages 10 textile clusters and complete domestic processing by 2040.</span>
-            <span data-lang="tj">Стратегияи нав таъсиси 10 кластери нассоҷиро пешбинӣ мекунад.</span>
-          </p>
-          <a href="news.html" class="news-card-link">
-            <span data-lang="ru" class="lang-active">Подробнее</span>
-            <span data-lang="en">Read more</span>
-            <span data-lang="tj">Бештар</span>
-            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-          </a>
+      <article class="post rv" style="--d:.16s" data-tilt>
+        <a class="post__media post__media--cover cover cover--strategy" href="news.html#strategy" tabindex="-1" aria-hidden="true"><span class="cover__big">2040</span><span class="cover__cap"><span data-lang="ru">Национальная стратегия</span><span data-lang="en">National Strategy</span><span data-lang="tj">Стратегияи миллӣ</span><br>2024–2040</span></a>
+        <div class="post__body">
+          <p class="post__meta"><span class="tag"><span data-lang="ru">Стратегия</span><span data-lang="en">Strategy</span><span data-lang="tj">Стратегия</span></span><time datetime="2024">2024</time></p>
+          <h3 class="post__h"><a href="news.html#strategy"><span data-lang="ru">Национальная стратегия развития текстильной отрасли 2024–2040</span><span data-lang="en">National Textile Industry Development Strategy 2024–2040</span><span data-lang="tj">Стратегияи миллии рушди соҳаи нассоҷӣ 2024–2040</span></a></h3>
         </div>
       </article>
     </div>
   </div>
 </section>
-
-<!-- ============ PARTNERS ============ -->
-<section class="partners-section">
-  <div class="container">
-    <div class="partners-label fade-up">
-      <span data-lang="ru" class="lang-active">Партнёры и международные связи</span>
-      <span data-lang="en">Partners &amp; International Relations</span>
-      <span data-lang="tj">Шарикон ва равобити байналмилалӣ</span>
-    </div>
-    <div class="partners-logos stagger-children">
-      <a href="#" class="partner-logo">
-        <img src="source/partner-itmf-logo.avif" alt="ITMF" class="partner-logo-img" loading="lazy">
-        <span>ITMF</span>
-      </a>
-      <a href="#" class="partner-logo">
-        <img src="source/partner-icac-logo.avif" alt="ICAC" class="partner-logo-img" loading="lazy">
-        <span>ICAC</span>
-      </a>
-      <a href="#" class="partner-logo">
-        <img src="source/partner-undp-logo.avif" alt="UNDP" class="partner-logo-img" loading="lazy">
-        <span>UNDP</span>
-      </a>
-      <a href="#" class="partner-logo">
-        <img src="source/partner-wto-logo.avif" alt="WTO / ITC" class="partner-logo-img" loading="lazy">
-        <span>ITC / WTO</span>
-      </a>
-      <a href="#" class="partner-logo">
-        <img src="source/partner-ebrd-logo.avif" alt="EBRD" class="partner-logo-img" loading="lazy">
-        <span>EBRD</span>
-      </a>
-    </div>
+<section class="section stage section--ring" aria-labelledby="ring-title">
+  <div class="wrap">
+    <header class="shead shead--center shead--light rv">
+  <p class="kicker"><span data-lang="ru">Международное взаимодействие</span><span data-lang="en">International engagement</span><span data-lang="tj">Ҳамкории байналмилалӣ</span></p>
+  <h2 class="shead__title"><span data-lang="ru">В диалоге с мировым отраслевым сообществом</span><span data-lang="en">In dialogue with the global industry community</span><span data-lang="tj">Дар муколама бо ҷомеаи ҷаҳонии соҳа</span></h2>
+  <p class="shead__lead"><span data-lang="ru">Отраслевые федерации, международные организации и институты развития, с которыми связана работа ассоциации.</span><span data-lang="en">Industry federations, international organisations and development institutions connected with the association’s work.</span><span data-lang="tj">Федератсияҳои соҳавӣ, созмонҳои байналмилалӣ ва институтҳои рушд, ки фаъолияти ассотсиатсия бо онҳо робита дорад.</span></p>
+</header>
+  </div>
+  <div class="ring" aria-hidden="true"><ul class="ring__track" style="--n:10"><li class="ring__face" style="--i:0"><b>ITMF</b><span><span data-lang="ru">Международная федерация производителей текстиля</span><span data-lang="en">International Textile Manufacturers Federation</span><span data-lang="tj">Федератсияи байналмилалии истеҳсолкунандагони нассоҷӣ</span></span></li><li class="ring__face" style="--i:1"><b>ICAC</b><span><span data-lang="ru">Международный консультативный комитет по хлопку</span><span data-lang="en">International Cotton Advisory Committee</span><span data-lang="tj">Кумитаи байналмилалии машваратӣ оид ба пахта</span></span></li><li class="ring__face" style="--i:2"><b>UNDP</b><span><span data-lang="ru">Программа развития ООН</span><span data-lang="en">United Nations Development Programme</span><span data-lang="tj">Барномаи рушди СММ</span></span></li><li class="ring__face" style="--i:3"><b>ITC</b><span><span data-lang="ru">Международный торговый центр</span><span data-lang="en">International Trade Centre</span><span data-lang="tj">Маркази байналмилалии савдо</span></span></li><li class="ring__face" style="--i:4"><b>EBRD</b><span><span data-lang="ru">Европейский банк реконструкции и развития</span><span data-lang="en">European Bank for Reconstruction and Development</span><span data-lang="tj">Бонки аврупоии таҷдид ва рушд</span></span></li><li class="ring__face" style="--i:5"><b>ITMF</b><span><span data-lang="ru">Международная федерация производителей текстиля</span><span data-lang="en">International Textile Manufacturers Federation</span><span data-lang="tj">Федератсияи байналмилалии истеҳсолкунандагони нассоҷӣ</span></span></li><li class="ring__face" style="--i:6"><b>ICAC</b><span><span data-lang="ru">Международный консультативный комитет по хлопку</span><span data-lang="en">International Cotton Advisory Committee</span><span data-lang="tj">Кумитаи байналмилалии машваратӣ оид ба пахта</span></span></li><li class="ring__face" style="--i:7"><b>UNDP</b><span><span data-lang="ru">Программа развития ООН</span><span data-lang="en">United Nations Development Programme</span><span data-lang="tj">Барномаи рушди СММ</span></span></li><li class="ring__face" style="--i:8"><b>ITC</b><span><span data-lang="ru">Международный торговый центр</span><span data-lang="en">International Trade Centre</span><span data-lang="tj">Маркази байналмилалии савдо</span></span></li><li class="ring__face" style="--i:9"><b>EBRD</b><span><span data-lang="ru">Европейский банк реконструкции и развития</span><span data-lang="en">European Bank for Reconstruction and Development</span><span data-lang="tj">Бонки аврупоии таҷдид ва рушд</span></span></li></ul></div>
+  <ul class="sr-only"><li><b>ITMF</b> — <span data-lang="ru">Международная федерация производителей текстиля</span><span data-lang="en">International Textile Manufacturers Federation</span><span data-lang="tj">Федератсияи байналмилалии истеҳсолкунандагони нассоҷӣ</span></li><li><b>ICAC</b> — <span data-lang="ru">Международный консультативный комитет по хлопку</span><span data-lang="en">International Cotton Advisory Committee</span><span data-lang="tj">Кумитаи байналмилалии машваратӣ оид ба пахта</span></li><li><b>UNDP</b> — <span data-lang="ru">Программа развития ООН</span><span data-lang="en">United Nations Development Programme</span><span data-lang="tj">Барномаи рушди СММ</span></li><li><b>ITC</b> — <span data-lang="ru">Международный торговый центр</span><span data-lang="en">International Trade Centre</span><span data-lang="tj">Маркази байналмилалии савдо</span></li><li><b>EBRD</b> — <span data-lang="ru">Европейский банк реконструкции и развития</span><span data-lang="en">European Bank for Reconstruction and Development</span><span data-lang="tj">Бонки аврупоии таҷдид ва рушд</span></li></ul>
+</section>
+<section class="cta stage" data-dust="40" data-stage="3">
+  <img class="cta__img" src="source/background.avif" alt="" aria-hidden="true" loading="lazy" data-parallax>
+  <div class="cta__veil" aria-hidden="true"></div>
+  <div class="wrap cta__in rv">
+    <p class="kicker kicker--light"><span data-lang="ru">Присоединиться</span><span data-lang="en">Join us</span><span data-lang="tj">Ҳамроҳ шавед</span></p>
+    <h2 class="cta__title"><span data-lang="ru">Развивайтесь вместе с отраслью</span><span data-lang="en">Grow together with the industry</span><span data-lang="tj">Бо соҳа якҷоя рушд кунед</span></h2>
+    <p class="cta__lead"><span data-lang="ru">Членство в TAJCOTTEX открывает доступ к институциональной поддержке, международной сети ITMF и государственным механизмам стимулирования. Для производителей, переработчиков, экспортёров и зарубежных партнёров.</span><span data-lang="en">TAJCOTTEX membership opens access to institutional support, the international ITMF network and government incentive mechanisms. For producers, processors, exporters and foreign partners.</span><span data-lang="tj">Узвият дар TAJCOTTEX ба дастгирии институтсионалӣ, шабакаи байналмилалии ITMF ва механизмҳои ҳавасмандгардонии давлатӣ дастрасӣ медиҳад. Барои истеҳсолкунандагон, коркардкунандагон, содиркунандагон ва шарикони хориҷӣ.</span></p>
+    <div class="cta__actions"><a class="btn btn--gold" href="contact.html"><span class="btn__label"><span data-lang="ru">Подать заявку</span><span data-lang="en">Apply for membership</span><span data-lang="tj">Ариза додан</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a><a class="btn btn--line" href="activities.html"><span class="btn__label"><span data-lang="ru">Преимущества членства</span><span data-lang="en">Membership benefits</span><span data-lang="tj">Имтиёзҳои узвият</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
-
-<!-- ============ CTA BANNER ============ -->
-<section class="cta-banner">
-  <img src="source/activities-sustainable.avif" alt="" class="cta-banner-bg" aria-hidden="true" loading="lazy">
-  <div class="cta-banner-glow" aria-hidden="true"></div>
-  <div class="container">
-    <div class="cta-banner-text fade-up">
-      <div class="section-kicker" style="color:var(--color-accent);">
-        <span data-lang="ru" class="lang-active">Присоединиться</span>
-        <span data-lang="en">Join us</span>
-        <span data-lang="tj">Ҳамроҳ шавед</span>
+</div>
+</main>
+<footer class="footer stage" role="contentinfo">
+  <div class="footer__glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="index.html" aria-label="TAJCOTTEX"><img class="brand__mark" src="source/logo.svg" alt="" width="46" height="46"><span class="brand__text"><b>TAJCOTTEX</b><small><span data-lang="ru">Ассоциация хлопка и текстиля</span><span data-lang="en">Cotton &amp; Textile Association</span><span data-lang="tj">Ассотсиатсияи пахта ва нассоҷӣ</span></small></span></a>
+        <p><span data-lang="ru">Национальная отраслевая ассоциация, объединяющая производителей, переработчиков, экспортёров и партнёров хлопково-текстильной отрасли Республики Таджикистан.</span><span data-lang="en">The national industry association uniting producers, processors, exporters and partners of the cotton and textile sector of the Republic of Tajikistan.</span><span data-lang="tj">Ассотсиатсияи миллии соҳавӣ, ки истеҳсолкунандагон, коркардкунандагон, содиркунандагон ва шарикони соҳаи пахта ва нассоҷии Ҷумҳурии Тоҷикистонро муттаҳид мекунад.</span></p>
+        <a class="btn btn--line btn--sm" href="contact.html"><span class="btn__label"><span data-lang="ru">Подать заявку на членство</span><span data-lang="en">Apply for membership</span><span data-lang="tj">Аризаи узвият</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
       </div>
-      <h2>
-        <span data-lang="ru" class="lang-active">Развивайтесь вместе с отраслью</span>
-        <span data-lang="en">Grow with the Industry</span>
-        <span data-lang="tj">Бахши ассотсиатсияи пешбари соҳа шавед</span>
-      </h2>
-      <p>
-        <span data-lang="ru" class="lang-active">Членство в TAJCOTTEX открывает доступ к институциональной поддержке, международной сети ITMF и государственным механизмам стимулирования. Для производителей, переработчиков, экспортёров и зарубежных партнёров.</span>
-        <span data-lang="en">TAJCOTTEX membership provides access to institutional support, the ITMF international network and government incentive mechanisms. Open to producers, processors, exporters and foreign partners.</span>
-        <span data-lang="tj">Узвият дар TAJCOTTEX дастрасии институтсионалӣ, шабакаи байналмилалии ITMF ва механизмҳои давлатии ташвиқро мекушояд. Барои истеҳсолкунандагон, коркардкунандагон, содиркунандагон ва шарикони хориҷии соҳа кушода аст.</span>
-      </p>
-    </div>
-    <div class="cta-banner-actions fade-up" style="transition-delay:0.1s">
-      <a href="contact.html" class="btn btn--accent btn--lg">
-        <span data-lang="ru" class="lang-active">Подать заявку</span>
-        <span data-lang="en">Apply for Membership</span>
-        <span data-lang="tj">Аризаи узвият диҳед</span>
-        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-      </a>
-      <a href="activities.html" class="btn btn--outline btn--lg">
-        <span data-lang="ru" class="lang-active">Преимущества членства</span>
-        <span data-lang="en">Membership Benefits</span>
-        <span data-lang="tj">Бештар дар бораи имтиёзот</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer" role="contentinfo">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo" aria-label="TAJCOTTEX Home">
-          <img src="source/logo.svg" alt="TAJCOTTEX" class="nav-logo-img">
-          <div>
-            <div class="nav-logo-text">TAJCOTTEX</div>
-            <div class="nav-logo-sub" data-lang="ru" class="lang-active">Хлопок и Текстиль</div>
-            <div class="nav-logo-sub" data-lang="en">Cotton &amp; Textile</div>
-            <div class="nav-logo-sub" data-lang="tj">Пахта ва Нассоҷӣ</div>
-          </div>
-        </a>
-        <p>
-          <span data-lang="ru" class="lang-active">Ведущая ассоциация хлопковой и текстильной промышленности Таджикистана. Объединяем производителей, инвесторов и государство для устойчивого развития отрасли.</span>
-          <span data-lang="en">The leading cotton and textile industry association of Tajikistan, uniting producers, investors and government for sustainable sector development.</span>
-          <span data-lang="tj">Ассотсиатсияи пешбари саноати пахта ва нассоҷии Тоҷикистон. Истеҳсолкунандагон, сармоягузорон ва давлатро барои рушди устувори соҳа муттаҳид мекунем.</span>
-        </p>
-        <div class="footer-social" aria-label="Social media">
-          <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-        </div>
+      <div class="footer__col">
+        <h2 class="footer__h"><span data-lang="ru">Разделы</span><span data-lang="en">Sections</span><span data-lang="tj">Бахшҳо</span></h2>
+        <ul><li><a href="about.html"><span data-lang="ru">Об ассоциации</span><span data-lang="en">About</span><span data-lang="tj">Дар бораи мо</span></a></li><li><a href="activities.html"><span data-lang="ru">Деятельность</span><span data-lang="en">Activities</span><span data-lang="tj">Фаъолият</span></a></li><li><a href="structure.html"><span data-lang="ru">Структура</span><span data-lang="en">Structure</span><span data-lang="tj">Сохтор</span></a></li><li><a href="news.html"><span data-lang="ru">Новости</span><span data-lang="en">News</span><span data-lang="tj">Хабарҳо</span></a></li><li><a href="contact.html"><span data-lang="ru">Контакты</span><span data-lang="en">Contact</span><span data-lang="tj">Тамос</span></a></li></ul>
       </div>
-
-      <div class="footer-col">
-        <h4>
-          <span data-lang="ru" class="lang-active">Навигация</span>
-          <span data-lang="en">Navigation</span>
-          <span data-lang="tj">Навигатсия</span>
-        </h4>
+      <div class="footer__col">
+        <h2 class="footer__h"><span data-lang="ru">Деятельность</span><span data-lang="en">Activities</span><span data-lang="tj">Фаъолият</span></h2>
+        <ul><li><a href="activities.html"><span data-lang="ru">Привлечение инвестиций</span><span data-lang="en">Investment attraction</span><span data-lang="tj">Ҷалби сармоягузорӣ</span></a></li><li><a href="activities.html"><span data-lang="ru">Поддержка экспорта</span><span data-lang="en">Export support</span><span data-lang="tj">Дастгирии содирот</span></a></li><li><a href="activities.html"><span data-lang="ru">Технологии и инновации</span><span data-lang="en">Technology &amp; innovation</span><span data-lang="tj">Технология ва навоварӣ</span></a></li><li><a href="activities.html"><span data-lang="ru">Образование и обучение</span><span data-lang="en">Education &amp; training</span><span data-lang="tj">Таълим ва омӯзиш</span></a></li><li><a href="activities.html"><span data-lang="ru">Членство</span><span data-lang="en">Membership</span><span data-lang="tj">Узвият</span></a></li></ul>
+      </div>
+      <div class="footer__col footer__contact">
+        <h2 class="footer__h"><span data-lang="ru">Контакты</span><span data-lang="en">Contact</span><span data-lang="tj">Тамос</span></h2>
         <ul>
-          <li><a href="index.html"><span data-lang="ru" class="lang-active">Главная</span><span data-lang="en">Home</span><span data-lang="tj">Асосӣ</span></a></li>
-          <li><a href="about.html"><span data-lang="ru" class="lang-active">Об ассоциации</span><span data-lang="en">About</span><span data-lang="tj">Дар бораи мо</span></a></li>
-          <li><a href="activities.html"><span data-lang="ru" class="lang-active">Деятельность</span><span data-lang="en">Activities</span><span data-lang="tj">Фаъолият</span></a></li>
-          <li><a href="structure.html"><span data-lang="ru" class="lang-active">Структура</span><span data-lang="en">Structure</span><span data-lang="tj">Сохтор</span></a></li>
-          <li><a href="news.html"><span data-lang="ru" class="lang-active">Новости</span><span data-lang="en">News</span><span data-lang="tj">Хабарҳо</span></a></li>
-          <li><a href="contact.html"><span data-lang="ru" class="lang-active">Контакты</span><span data-lang="en">Contact</span><span data-lang="tj">Тамос</span></a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>
-          <span data-lang="ru" class="lang-active">Деятельность</span>
-          <span data-lang="en">Activities</span>
-          <span data-lang="tj">Фаъолият</span>
-        </h4>
-        <ul>
-          <li><a href="activities.html"><span data-lang="ru" class="lang-active">Привлечение инвестиций</span><span data-lang="en">Investment Attraction</span><span data-lang="tj">Ҷалби сармоягузорӣ</span></a></li>
-          <li><a href="activities.html"><span data-lang="ru" class="lang-active">Поддержка экспорта</span><span data-lang="en">Export Support</span><span data-lang="tj">Дастгирии содирот</span></a></li>
-          <li><a href="activities.html"><span data-lang="ru" class="lang-active">Обучение и развитие</span><span data-lang="en">Training &amp; Development</span><span data-lang="tj">Омӯзиш</span></a></li>
-          <li><a href="activities.html"><span data-lang="ru" class="lang-active">Передача технологий</span><span data-lang="en">Technology Transfer</span><span data-lang="tj">Интиқоли технология</span></a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>
-          <span data-lang="ru" class="lang-active">Контакты</span>
-          <span data-lang="en">Contact</span>
-          <span data-lang="tj">Тамос</span>
-        </h4>
-        <ul>
-          <li><a href="mailto:chairman@tajcottex.tj">chairman@tajcottex.tj</a></li>
-          <li><a href="mailto:chairman@tajcottex.org">chairman@tajcottex.org</a></li>
-          <li><a href="tel:+992907501010">+992 907 50 10 10</a></li>
-          <li><a href="tel:+992888080064">+992 888 08 00 64</a></li>
-          <li>
-            <span data-lang="ru" class="lang-active">г. Душанбе, ул. Рудаки 42</span>
-            <span data-lang="en">42 Rudaki Ave., Dushanbe</span>
-            <span data-lang="tj">Душанбе, хиёбони Рӯдакӣ 42</span>
-          </li>
+          <li><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5.5" width="18" height="13" rx="1.5"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><span><a href="mailto:chairman@tajcottex.tj">chairman@tajcottex.tj</a><br><a href="mailto:chairman@tajcottex.org">chairman@tajcottex.org</a></span></li>
+          <li><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.6 3.5h3l1.5 4-2 1.3a11 11 0 0 0 6 6l1.3-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg><span><a href="tel:+992907501010">+992 907 50 10 10</a><br><a href="tel:+992888080064">+992 888 08 00 64</a></span></li>
+          <li><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span><span data-lang="ru">пр. Рудаки, 42, г.&nbsp;Душанбе</span><span data-lang="en">42 Rudaki Avenue, Dushanbe</span><span data-lang="tj">хиёбони Рӯдакӣ, 42, ш.&nbsp;Душанбе</span></span></li>
+          <li><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span><span data-lang="ru">Пн–Пт, 9:00–18:00</span><span data-lang="en">Mon–Fri, 9:00–18:00</span><span data-lang="tj">Дш–Ҷм, 9:00–18:00</span></span></li>
         </ul>
       </div>
     </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 TAJCOTTEX.
-        <span data-lang="ru" class="lang-active">Все права защищены.</span>
-        <span data-lang="en">All rights reserved.</span>
-        <span data-lang="tj">Ҳамаи ҳуқуқҳо ҳифз шудаанд.</span>
-      </span>
-      <span>
-        <span data-lang="ru" class="lang-active">Ассоциация хлопка и текстиля Таджикистана</span>
-        <span data-lang="en">Cotton &amp; Textile Association of Tajikistan</span>
-        <span data-lang="tj">Ассотсиатсияи пахта ва нассоҷии Тоҷикистон</span>
-      </span>
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> TAJCOTTEX. <span data-lang="ru">Все права защищены.</span><span data-lang="en">All rights reserved.</span><span data-lang="tj">Ҳамаи ҳуқуқҳо ҳифз шудаанд.</span></span>
+      <span><span data-lang="ru">Ассоциация хлопка и текстиля Таджикистана</span><span data-lang="en">Cotton &amp; Textile Association of Tajikistan</span><span data-lang="tj">Ассотсиатсияи пахта ва нассоҷии Тоҷикистон</span></span>
     </div>
   </div>
 </footer>
-
-<script src="js/main.js"></script>
-<script data-pplx-inline-edit>
-(function(){
-  if(window===window.top)return;
-  function inlineAll(orig,clone){
-    if(orig.nodeType!==1)return;
-    try{
-      var cs=getComputedStyle(orig);
-      var t='';
-      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
-      clone.style.cssText=t;
-    }catch(e){}
-    var oc=orig.children,cc=clone.children;
-    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
-  }
-  function stripExternal(clone){
-    var imgs=clone.querySelectorAll('img');
-    for(var i=0;i<imgs.length;i++){
-      var s=imgs[i].getAttribute('src');
-      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
-    }
-    var all=clone.querySelectorAll('*');
-    for(var i=0;i<all.length;i++){
-      var st=all[i].style.cssText;
-      if(st&&st.indexOf('url(')>=0){
-        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
-      }
-    }
-  }
-  window.addEventListener('message',function(e){
-    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
-    var scrollX=window.scrollX||window.pageXOffset||0;
-    var scrollY=window.scrollY||window.pageYOffset||0;
-    var w=window.innerWidth,h=window.innerHeight;
-    try{
-      var clone=document.documentElement.cloneNode(true);
-      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
-      for(var i=0;i<rm.length;i++){rm[i].remove();}
-      inlineAll(document.documentElement,clone);
-      stripExternal(clone);
-      var html=new XMLSerializer().serializeToString(clone);
-      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
-        +'<foreignObject width="100%" height="100%">'
-        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
-        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
-        +html+'</div></div></foreignObject></svg>';
-      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
-      var img=new Image();
-      img.onload=function(){
-        var c=document.createElement('canvas');c.width=w;c.height=h;
-        c.getContext('2d').drawImage(img,0,0);
-        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
-      };
-      img.onerror=function(){
-        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
-      };
-      img.src=svgUrl;
-    }catch(err){
-      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
-    }
-  });
-})();
-</script></body>
+<script src="js/vendor/three.min.js" defer></script>
+<script src="js/scene3d.js" defer></script>
+<script src="js/site.js" defer></script>
+</body>
 </html>
