@@ -35,9 +35,11 @@
   <div class="drawer__foot"><div class="langs" role="group" aria-label="Language / Язык / Забон"><button type="button" data-lang-btn="ru" lang="ru" aria-label="Русский">RU</button><button type="button" data-lang-btn="en" lang="en" aria-label="English">EN</button><button type="button" data-lang-btn="tj" lang="tg" aria-label="Тоҷикӣ">TJ</button></div><a href="mailto:chairman@tajcottex.tj">chairman@tajcottex.tj</a></div>
 </div>
 <main id="main">
-<section class="phero stage phero--3d" data-dust="45">
+<div class="scene" data-scene="org,org,fabric,globe">
+  <div class="scene__layer" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
+<section class="phero stage" data-dust="45" data-stage="0">
   <div class="phero__veil" aria-hidden="true"></div>
-  <div class="phero__scene" data-scene="org" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
+  
   <div class="wrap phero__in">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="index.html"><span data-lang="ru">Главная</span><span data-lang="en">Home</span><span data-lang="tj">Асосӣ</span></a></li><li aria-current="page"><span data-lang="ru">Структура</span><span data-lang="en">Structure</span><span data-lang="tj">Сохтор</span></li></ol>
     <p class="kicker kicker--light"><span data-lang="ru">Организационная структура</span><span data-lang="en">Organisational structure</span><span data-lang="tj">Сохтори ташкилӣ</span></p>
@@ -62,7 +64,7 @@
     </ul>
   </div>
 </section>
-<section class="section stage section--deep" aria-labelledby="org-title">
+<section class="section stage section--deep" aria-labelledby="org-title" data-stage="1" data-place="back">
   <div class="aurora" aria-hidden="true"></div><div class="deep__grid" aria-hidden="true"></div>
   <div class="wrap">
     <header class="shead shead--center shead--light rv">
@@ -147,7 +149,7 @@
     <ul class="depts"><li class="dept rv" style="--d:0.00s"><span class="dept__abbr" aria-hidden="true">ИП</span><div><h4><span data-lang="ru">Отдел инвестиций и партнёрств</span><span data-lang="en">Investment &amp; Partnerships</span><span data-lang="tj">Шӯъбаи сармоягузорӣ ва шарикӣ</span></h4><p><span data-lang="ru">Привлечение инвестиций, сопровождение проектов, развитие партнёрских программ</span><span data-lang="en">Investment attraction, project support, partnership programmes</span><span data-lang="tj">Ҷалби сармоягузорӣ, ҳамроҳии лоиҳаҳо, рушди барномаҳои шарикӣ</span></p></div></li><li class="dept rv" style="--d:0.06s"><span class="dept__abbr" aria-hidden="true">ЭР</span><div><h4><span data-lang="ru">Отдел экспорта и рынков</span><span data-lang="en">Export &amp; Markets</span><span data-lang="tj">Шӯъбаи содирот ва бозорҳо</span></h4><p><span data-lang="ru">Поддержка экспортёров, сертификация, выход на международные рынки</span><span data-lang="en">Exporter support, certification, access to international markets</span><span data-lang="tj">Дастгирии содиркунандагон, сертификатсия, дастрасӣ ба бозорҳои байналмилалӣ</span></p></div></li><li class="dept rv" style="--d:0.12s"><span class="dept__abbr" aria-hidden="true">ТИ</span><div><h4><span data-lang="ru">Отдел технологий и инноваций</span><span data-lang="en">Technology &amp; Innovation</span><span data-lang="tj">Шӯъбаи технология ва навоварӣ</span></h4><p><span data-lang="ru">Мониторинг технологий, консультирование по модернизации производства</span><span data-lang="en">Technology monitoring, production modernisation consulting</span><span data-lang="tj">Мониторинги технологияҳо, машварат оид ба навсозии истеҳсолот</span></p></div></li><li class="dept rv" style="--d:0.18s"><span class="dept__abbr" aria-hidden="true">ОК</span><div><h4><span data-lang="ru">Отдел обучения и квалификации</span><span data-lang="en">Training &amp; Qualification</span><span data-lang="tj">Шӯъбаи омӯзиш ва такмили ихтисос</span></h4><p><span data-lang="ru">Программы профессиональной подготовки и повышения квалификации</span><span data-lang="en">Professional training and upskilling programmes</span><span data-lang="tj">Барномаҳои тайёрии касбӣ ва такмили ихтисос</span></p></div></li><li class="dept rv" style="--d:0.24s"><span class="dept__abbr" aria-hidden="true">АЦ</span><div><h4><span data-lang="ru">Аналитический центр</span><span data-lang="en">Analytics &amp; Research Centre</span><span data-lang="tj">Маркази таҳлилӣ</span></h4><p><span data-lang="ru">Отраслевая аналитика, мониторинг рынков, статистика и прогнозирование</span><span data-lang="en">Sector analytics, market monitoring, statistics and forecasting</span><span data-lang="tj">Таҳлили соҳавӣ, мониторинги бозорҳо, омор ва пешгӯӣ</span></p></div></li></ul>
   </div>
 </section>
-<section class="section" aria-labelledby="mem-title">
+<section class="section" aria-labelledby="mem-title" data-stage="3" data-place="back">
   <div class="wrap split split--top">
     <div class="split__text rv">
       <p class="kicker"><span data-lang="ru">Членство</span><span data-lang="en">Membership</span><span data-lang="tj">Узвият</span></p>
@@ -171,6 +173,7 @@
     </div>
   </div>
 </section>
+</div>
 </main>
 <footer class="footer stage" role="contentinfo">
   <div class="footer__glow" aria-hidden="true"></div>

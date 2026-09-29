@@ -35,9 +35,11 @@
   <div class="drawer__foot"><div class="langs" role="group" aria-label="Language / Язык / Забон"><button type="button" data-lang-btn="ru" lang="ru" aria-label="Русский">RU</button><button type="button" data-lang-btn="en" lang="en" aria-label="English">EN</button><button type="button" data-lang-btn="tj" lang="tg" aria-label="Тоҷикӣ">TJ</button></div><a href="mailto:chairman@tajcottex.tj">chairman@tajcottex.tj</a></div>
 </div>
 <main id="main">
-<section class="phero stage phero--3d" data-dust="45">
+<div class="scene" data-scene="yarn,fabric,cotton,globe">
+  <div class="scene__layer" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
+<section class="phero stage" data-dust="45" data-stage="0">
   <div class="phero__veil" aria-hidden="true"></div>
-  <div class="phero__scene" data-scene="yarn" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
+  
   <div class="wrap phero__in">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="index.html"><span data-lang="ru">Главная</span><span data-lang="en">Home</span><span data-lang="tj">Асосӣ</span></a></li><li aria-current="page"><span data-lang="ru">Новости</span><span data-lang="en">News</span><span data-lang="tj">Хабарҳо</span></li></ol>
     <p class="kicker kicker--light"><span data-lang="ru">Новости и события</span><span data-lang="en">News &amp; events</span><span data-lang="tj">Хабарҳо ва рӯйдодҳо</span></p>
@@ -98,7 +100,7 @@
     <p class="empty muted" data-empty hidden><span data-lang="ru">В этой рубрике пока нет публикаций.</span><span data-lang="en">No publications in this category yet.</span><span data-lang="tj">Дар ин бахш ҳоло нашрия нест.</span></p>
   </div>
 </section>
-<section class="section section--alt" aria-labelledby="sub-title">
+<section class="section section--alt" aria-labelledby="sub-title" data-stage="3" data-place="back">
   <div class="wrap wrap--narrow center">
     <header class="shead shead--center  rv">
   <p class="kicker"><span data-lang="ru">Рассылка</span><span data-lang="en">Newsletter</span><span data-lang="tj">Хабарнома</span></p>
@@ -108,6 +110,7 @@
     <div class="rv"><a class="btn btn--gold" href="mailto:chairman@tajcottex.tj?subject=TAJCOTTEX%20newsletter"><span class="btn__label"><span data-lang="ru">Подписаться по email</span><span data-lang="en">Subscribe by email</span><span data-lang="tj">Обуна тавассути email</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
+</div>
 </main>
 <footer class="footer stage" role="contentinfo">
   <div class="footer__glow" aria-hidden="true"></div>

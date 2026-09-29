@@ -432,13 +432,16 @@ html.rv-ready .rv:not(.in) { opacity: 0; translate: 0 38px; scale: .985; }
   transform: perspective(800px) rotateX(55deg) scale(2.2) translateY(-8%);
   transform-origin: 50% 0;
 }
-.section--deep > .wrap { position: relative; }
+.section--deep > .wrap { position: relative; z-index: 2; }
 
 /* =========================================================
    HOME — HERO + 3D VALUE CHAIN
    ========================================================= */
-.scene { position: relative; isolation: isolate; background: var(--ink-800); }
+.scene { position: relative; isolation: isolate; }
 .scene__layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+/* page content sits above the particle layer; section backgrounds stay below it */
+.scene .section > .wrap, .scene .phero__in, .scene .hero__in, .scene .cta__in, .scene .manifesto__in, .scene .cycle__step, .scene .cycle__rail, .scene .article > .wrap, .scene .hero__scroll { position: relative; z-index: 2; }
+.story { position: relative; background: var(--ink-800); }
 .scene-canvas { position: sticky; top: 0; width: 100%; height: 100vh; height: 100lvh; opacity: 0; transition: opacity 1.6s ease; }
 .scene-canvas.is-ready { opacity: 1; }
 
@@ -823,8 +826,6 @@ html:not(.has-3d) .cycle__rail { display: none; }
 }
 .phero__img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; opacity: .5; }
 .phero__veil { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(10, 15, 11, .95) 10%, rgba(10, 15, 11, .6) 60%, rgba(10, 15, 11, .35)), linear-gradient(0deg, rgba(10, 15, 11, .9), transparent 50%); }
-.phero__scene { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.phero__scene .scene-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .phero__in { position: relative; z-index: 2; }
 .phero__in > * { max-width: 780px; }
 .phero__in > * { animation: rise 1.3s var(--ease) both; }
@@ -840,7 +841,7 @@ html:not(.has-3d) .cycle__rail { display: none; }
 .crumbs li + li::before { content: "/"; margin-right: .5rem; color: rgba(217, 184, 117, .6); }
 .crumbs a:hover { color: var(--gold-200); }
 .crumbs [aria-current] { color: rgba(239, 233, 218, .85); }
-@media (max-width: 1024px) { .phero--3d .phero__in > * { max-width: 640px; } }
+@media (max-width: 1024px) { .phero__in > * { max-width: 640px; } }
 
 /* =========================================================
    ACTIVITIES
@@ -1097,7 +1098,7 @@ html:not(.has-3d) .cycle__rail { display: none; }
 }
 .cta::before { opacity: .08; }
 .footer::before { -webkit-mask-image: linear-gradient(transparent, #000 60%); mask-image: linear-gradient(transparent, #000 60%); }
-.footer > .wrap, .cta__in, .section--deep > .wrap { position: relative; z-index: 1; }
+.footer > .wrap, .cta__in, .section--deep > .wrap { position: relative; z-index: 2; }
 
 /* slow aurora behind the dark sections */
 .aurora { position: absolute; inset: -20%; pointer-events: none; z-index: 0; overflow: hidden; }

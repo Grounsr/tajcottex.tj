@@ -35,9 +35,11 @@
   <div class="drawer__foot"><div class="langs" role="group" aria-label="Language / Язык / Забон"><button type="button" data-lang-btn="ru" lang="ru" aria-label="Русский">RU</button><button type="button" data-lang-btn="en" lang="en" aria-label="English">EN</button><button type="button" data-lang-btn="tj" lang="tg" aria-label="Тоҷикӣ">TJ</button></div><a href="mailto:chairman@tajcottex.tj">chairman@tajcottex.tj</a></div>
 </div>
 <main id="main">
-<section class="phero stage phero--3d" data-dust="45">
+<div class="scene" data-scene="fabric,yarn,cotton,globe">
+  <div class="scene__layer" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
+<section class="phero stage" data-dust="45" data-stage="0">
   <div class="phero__veil" aria-hidden="true"></div>
-  <div class="phero__scene" data-scene="fabric" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
+  
   <div class="wrap phero__in">
     <ol class="crumbs" aria-label="Breadcrumb"><li><a href="index.html"><span data-lang="ru">Главная</span><span data-lang="en">Home</span><span data-lang="tj">Асосӣ</span></a></li><li aria-current="page"><span data-lang="ru">Деятельность</span><span data-lang="en">Activities</span><span data-lang="tj">Фаъолият</span></li></ol>
     <p class="kicker kicker--light"><span data-lang="ru">Направления деятельности</span><span data-lang="en">Areas of activity</span><span data-lang="tj">Самтҳои фаъолият</span></p>
@@ -114,7 +116,7 @@
     <div class="center rv"><a class="btn btn--gold" href="contact.html"><span class="btn__label"><span data-lang="ru">Подать заявку на членство</span><span data-lang="en">Apply for membership</span><span data-lang="tj">Аризаи узвият пешниҳод кардан</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
-<section class="section stage section--deep" aria-labelledby="proj">
+<section class="section stage section--deep" aria-labelledby="proj" data-stage="2" data-place="back">
   <div class="aurora" aria-hidden="true"></div><div class="deep__grid" aria-hidden="true"></div>
   <div class="wrap">
     <header class="shead shead--center shead--light rv">
@@ -167,7 +169,7 @@
     <p class="center muted rv"><span data-lang="ru">Не нашли ответ?</span><span data-lang="en">Didn’t find the answer?</span><span data-lang="tj">Ҷавоб наёфтед?</span> <a class="link" href="contact.html"><span data-lang="ru">Напишите в ассоциацию</span><span data-lang="en">Write to the association</span><span data-lang="tj">Ба ассотсиатсия нависед</span><svg class="ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></p>
   </div>
 </section>
-<section class="cta stage" data-dust="40">
+<section class="cta stage" data-dust="40" data-stage="3">
   <img class="cta__img" src="source/background.avif" alt="" aria-hidden="true" loading="lazy" data-parallax>
   <div class="cta__veil" aria-hidden="true"></div>
   <div class="wrap cta__in rv">
@@ -177,6 +179,7 @@
     <div class="cta__actions"><a class="btn btn--gold" href="contact.html"><span class="btn__label"><span data-lang="ru">Подать заявку</span><span data-lang="en">Apply now</span><span data-lang="tj">Ариза додан</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
+</div>
 </main>
 <footer class="footer stage" role="contentinfo">
   <div class="footer__glow" aria-hidden="true"></div>

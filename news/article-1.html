@@ -35,7 +35,9 @@
   <div class="drawer__foot"><div class="langs" role="group" aria-label="Language / Язык / Забон"><button type="button" data-lang-btn="ru" lang="ru" aria-label="Русский">RU</button><button type="button" data-lang-btn="en" lang="en" aria-label="English">EN</button><button type="button" data-lang-btn="tj" lang="tg" aria-label="Тоҷикӣ">TJ</button></div><a href="mailto:chairman@tajcottex.tj">chairman@tajcottex.tj</a></div>
 </div>
 <main id="main">
-<section class="phero stage" data-dust="45">
+<div class="scene" data-scene="cotton,yarn,fabric,globe">
+  <div class="scene__layer" aria-hidden="true"><canvas class="scene-canvas"></canvas></div>
+<section class="phero stage" data-dust="45" data-stage="0">
   <img class="phero__img" src="../source/news-cotton.avif" alt="" aria-hidden="true" fetchpriority="high"><div class="phero__veil" aria-hidden="true"></div>
   
   <div class="wrap phero__in">
@@ -59,6 +61,7 @@
     <nav class="article__nav" aria-label="Articles"><a class="btn btn--line-ink" href="../news.html"><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 12H4M10 6l-6 6 6 6"/></svg><span class="btn__label"><span data-lang="ru">Все новости</span><span data-lang="en">All news</span><span data-lang="tj">Ҳамаи хабарҳо</span></span></a><a class="btn btn--gold" href="article-2.html"><span class="btn__label"><span data-lang="ru">Следующая статья</span><span data-lang="en">Next article</span><span data-lang="tj">Мақолаи навбатӣ</span></span><svg class="ic btn__ic" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a></nav>
   </div>
 </article>
+</div>
 </main>
 <footer class="footer stage" role="contentinfo">
   <div class="footer__glow" aria-hidden="true"></div>
@@ -93,6 +96,8 @@
     </div>
   </div>
 </footer>
+<script src="../js/vendor/three.min.js" defer></script>
+<script src="../js/scene3d.js" defer></script>
 <script src="../js/site.js" defer></script>
 </body>
 </html>
