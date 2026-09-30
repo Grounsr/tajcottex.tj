@@ -598,7 +598,7 @@
   }
 
   /* ---------- loop ---------- */
-  var visible = true, running = false, last = performance.now(), t = 0;
+  var visible = true, running = false, last = performance.now(), t = 0, spinV = 0;
   var stage = readScroll().stage;
   pos.op = cur.op;
   var introStart = null;
@@ -628,7 +628,12 @@
     var sway = reduceMotion ? 0 : Math.sin(t * 0.25) * 0.2;
     var slow = reduceMotion ? 0 : t * 0.06;
     var isOrg = name === 'org';
-    group.rotation.y = sway + px * 0.5 + (isOrg ? 0.28 : 0) + (name === 'yarn' || name === 'cotton' ? slow : 0);
+    // the object turns as the page scrolls and leans into fast scrolling
+    var sv = (window.tajScroll && window.tajScroll.vel) || 0;
+    spinV += (clamp(sv * 0.006, -0.5, 0.5) - spinV) * Math.min(1, dt * 4);
+    var turn = reduceMotion || isOrg ? 0 : (window.scrollY || 0) * 0.0007;
+    group.rotation.y = sway + px * 0.5 + (isOrg ? 0.28 : 0) + (name === 'yarn' || name === 'cotton' ? slow : 0) + turn + spinV;
+    group.rotation.z = isOrg ? 0 : -spinV * 0.25;
     group.rotation.x = (isOrg ? -0.12 : 0) + py * 0.25 + (reduceMotion ? 0 : Math.sin(t * 0.18) * 0.05);
     place(dt);
 

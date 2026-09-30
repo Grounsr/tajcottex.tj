@@ -391,16 +391,149 @@
     setTimeout(function () { if (cur.parentNode) cur.parentNode.removeChild(cur); }, 1900);
   }
 
+  /* ---------- immersive: smooth scroll, hero dissolve, marquee, cursor ring ---------- */
+  function initImmersive() {
+    if (reduceMotion) return;
+    html.classList.add('is-immersive');
+    var vel = 0, lastY = window.scrollY || 0;
+    window.tajScroll = { vel: 0 };
+
+    // inertial wheel scrolling on desktop; touch keeps its native momentum
+    var smooth = finePointer && 'requestAnimationFrame' in window;
+    var target = lastY, current = lastY, gliding = false;
+    function maxY() { return document.documentElement.scrollHeight - innerHeight; }
+    function glide() {
+      current += (target - current) * 0.095;
+      if (Math.abs(target - current) < 0.4) { current = target; gliding = false; }
+      window.scrollTo(0, current);
+      if (gliding) requestAnimationFrame(glide);
+    }
+    function glideTo(y) { target = Math.max(0, Math.min(maxY(), y)); if (!gliding) { gliding = true; current = window.scrollY; requestAnimationFrame(glide); } }
+    if (smooth) {
+      html.classList.add('is-smooth');
+      window.addEventListener('wheel', function (e) {
+        if (e.ctrlKey || e.defaultPrevented || document.body.style.overflow === 'hidden') return;
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+        for (var n = e.target; n && n !== document.body && n.nodeType === 1; n = n.parentNode) {
+          if (n.scrollHeight > n.clientHeight + 1 && /(auto|scroll)/.test(getComputedStyle(n).overflowY)) return;
+        }
+        e.preventDefault();
+        var d = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1);
+        if (!gliding) target = window.scrollY;
+        glideTo(target + d);
+      }, { passive: false });
+      // a scrollbar drag, key press or script jump takes over from the glide
+      window.addEventListener('scroll', function () {
+        if (gliding && Math.abs(window.scrollY - current) > 3) gliding = false;
+        if (!gliding) target = current = window.scrollY;
+      }, { passive: true });
+      ['keydown', 'mousedown', 'touchstart'].forEach(function (t) { window.addEventListener(t, function () { gliding = false; }, { passive: true }); });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a[href^="#"]');
+        if (!a || a.getAttribute('href').length < 2) return;
+        var el = document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)));
+        if (!el) return;
+        e.preventDefault();
+        glideTo(el.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(html).scrollPaddingTop) || 0));
+        if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
+      });
+    }
+
+    // running band of words before the footer
+    var footer = document.querySelector('.footer');
+    var track = null, mx = 0, half = 0;
+    if (footer) {
+      var star = '<svg class="marquee__star" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></svg>';
+      var words = ['Хлопок', '<i>Cotton</i>', '<span class="o">Пахта</span>', 'Текстиль', '<i>Textile</i>', '<span class="o">Нассоҷӣ</span>'];
+      var item = '<div class="marquee__item">' + words.map(function (w) { return w + star; }).join('') + '</div>';
+      var band = document.createElement('div');
+      band.className = 'marquee'; band.setAttribute('aria-hidden', 'true');
+      band.innerHTML = '<div class="marquee__track">' + item + item + '</div>';
+      footer.parentNode.insertBefore(band, footer);
+      track = band.firstChild;
+      half = track.scrollWidth / 2;
+      window.addEventListener('resize', function () { half = track.scrollWidth / 2; });
+    }
+
+    // hero content dissolves upward as the page takes over
+    var hero = document.querySelector('.hero, .phero');
+    var ring = null;
+    function tick() {
+      var y = window.scrollY || 0;
+      vel += ((y - lastY) - vel) * 0.18; lastY = y;
+      window.tajScroll.vel = vel;
+      if (hero) html.style.setProperty('--hp', Math.max(0, Math.min(1, y / (hero.offsetHeight * 0.85))).toFixed(3));
+      if (track && half) {
+        mx -= 0.6 + Math.min(40, Math.abs(vel)) * 0.35;
+        if (mx <= -half) mx += half;
+        track.style.transform = 'translate3d(' + mx.toFixed(1) + 'px,0,0)';
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // a soft ring follows the pointer and opens over anything clickable
+    if (finePointer) {
+      ring = document.createElement('div');
+      ring.className = 'cring'; ring.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(ring);
+      var rx = 0, ry = 0, tx = 0, ty = 0, rraf = 0;
+      function follow() {
+        rx += (tx - rx) * 0.2; ry += (ty - ry) * 0.2;
+        ring.style.transform = 'translate3d(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px,0)';
+        rraf = Math.abs(tx - rx) + Math.abs(ty - ry) > 0.3 ? requestAnimationFrame(follow) : 0;
+      }
+      window.addEventListener('pointermove', function (e) {
+        tx = e.clientX; ty = e.clientY;
+        if (!ring.classList.contains('is-on')) { rx = tx; ry = ty; ring.classList.add('is-on'); }
+        ring.classList.toggle('is-link', !!e.target.closest('a, button, [role="button"], label, select, summary'));
+        if (!rraf) rraf = requestAnimationFrame(follow);
+      }, { passive: true });
+      document.addEventListener('pointerleave', function () { ring.classList.remove('is-on'); });
+      window.addEventListener('pointerdown', function () { ring.classList.add('is-down'); });
+      window.addEventListener('pointerup', function () { ring.classList.remove('is-down'); });
+    }
+  }
+
+  /* ---------- journey timeline: pinned horizontal travel on wide screens ---------- */
+  function initJourney() {
+    if (reduceMotion || !finePointer || innerWidth < 1024) return;
+    $all('.tl').forEach(function (tl) {
+      var pin = document.createElement('div'), sticky = document.createElement('div'), bar = document.createElement('div');
+      pin.className = 'hpin'; sticky.className = 'hpin__sticky'; bar.className = 'hpin__bar'; bar.innerHTML = '<i></i>';
+      var head = tl.previousElementSibling;
+      tl.parentNode.insertBefore(pin, tl);
+      // the section heading rides along in the pinned frame
+      if (head && head.classList.contains('shead')) { var hw = document.createElement('div'); hw.className = 'wrap'; hw.appendChild(head); sticky.appendChild(hw); head.classList.add('in'); }
+      sticky.appendChild(tl); sticky.appendChild(bar); pin.appendChild(sticky);
+      tl.classList.add('tl--h');
+      $all('.rv', tl).forEach(function (el) { el.classList.add('in'); });
+      var dist = 0;
+      function measure() { dist = Math.max(0, tl.scrollWidth - innerWidth); pin.style.height = (innerHeight + dist) + 'px'; }
+      function move() {
+        var r = pin.getBoundingClientRect();
+        var p = dist ? Math.max(0, Math.min(1, -r.top / dist)) : 0;
+        tl.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
+        bar.style.setProperty('--jp', p.toFixed(3));
+      }
+      measure(); move();
+      window.addEventListener('resize', function () { measure(); move(); });
+      window.addEventListener('scroll', function () { requestAnimationFrame(move); }, { passive: true });
+    });
+  }
+
   /* ---------- init ---------- */
   function init() {
     applyLang(lang(), false);
     $all('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
     initCurtain();
     splitWords();
+    initJourney();
     initReveal();
     initCounters();
     initDust();
     initMagnet();
+    initImmersive();
     initTilt();
     initRail();
     initFilter();

@@ -1149,3 +1149,82 @@ html.is-opening .hero__in > *, html.is-opening .phero__in > * { animation-play-s
   .step__h { grid-column: 2; margin: 0; }
   .step__p { grid-column: 2; align-self: start; }
 }
+
+/* =========================================================
+   IMMERSIVE LAYER
+   Smooth inertial scroll, glass panels the 3D object shows
+   through, cinematic image reveals, a running marquee band,
+   a hero that dissolves into the page and a cursor ring.
+   Behaviour lives in site.js › initImmersive.
+   ========================================================= */
+
+/* glass panels: the three.js object drifts behind them, softly blurred */
+.card, .post, .leader, .plan, .formcard, .tl__card, .astat, .gov__p, .dept, .mapcard {
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--surface) 74%, transparent), color-mix(in srgb, var(--surface) 40%, transparent));
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+  border-color: color-mix(in srgb, var(--text) 10%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 9%, transparent), var(--shadow);
+}
+.card:hover, .post:hover, .leader:hover, .plan:hover, .tl__card:hover, .astat:hover, .gov__p:hover, .dept:hover {
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 14%, transparent), var(--shadow-lg);
+}
+[data-theme="light"] .card, [data-theme="light"] .post, [data-theme="light"] .leader, [data-theme="light"] .plan,
+[data-theme="light"] .formcard, [data-theme="light"] .tl__card, [data-theme="light"] .astat, [data-theme="light"] .gov__p,
+[data-theme="light"] .dept { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), var(--shadow); }
+
+/* images open like a curtain and settle from a slow zoom */
+.frame__img, .post__media img { transition: clip-path 1.6s var(--ease), scale 2.2s var(--ease), transform 1.4s var(--ease); }
+html.rv-ready .frame:not(.in) .frame__img { clip-path: inset(14% 10% 14% 10% round var(--r-lg)); scale: 1.18; }
+html.rv-ready .post:not(.in) .post__media img { clip-path: inset(0 0 100% 0); scale: 1.25; }
+.frame__img { clip-path: inset(0 0 0 0 round var(--r-lg)); }
+.post__media img { clip-path: inset(0 0 0 0); }
+
+/* hero dissolves into the page as you scroll away (--hp: 0 → 1) */
+html.is-immersive .hero__in, html.is-immersive .phero__in {
+  opacity: calc(1 - var(--hp, 0) * 1.15);
+  translate: 0 calc(var(--hp, 0) * -14vh);
+  scale: calc(1 - var(--hp, 0) * .06);
+  filter: blur(calc(var(--hp, 0) * 6px));
+  will-change: opacity, translate;
+}
+html.is-immersive .hero__img { translate: 0 calc(var(--hp, 0) * 18vh); }
+
+/* running band of words, speeds up with the scroll */
+.marquee { position: relative; z-index: 2; overflow: hidden; padding-block: clamp(2.2rem, 5vw, 4rem); background: var(--ink-800); border-top: 1px solid rgba(236, 222, 186, .08); }
+.marquee__track { display: flex; width: max-content; will-change: transform; }
+.marquee__item { flex: none; display: flex; align-items: center; gap: clamp(1.5rem, 3vw, 3rem); padding-right: clamp(1.5rem, 3vw, 3rem);
+  font-family: var(--f-display); font-weight: 400; font-size: clamp(3rem, 2rem + 6vw, 8.5rem); line-height: 1; letter-spacing: -.03em; white-space: nowrap; color: #f3ecdc; }
+.marquee__item i { font-style: italic; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; }
+.marquee__item .o { color: transparent; -webkit-text-stroke: 1px rgba(236, 222, 186, .45); }
+.marquee__star { width: .45em; height: .45em; flex: none; color: var(--gold-300); }
+
+/* cursor ring (fine pointers only) */
+.cring { position: fixed; left: 0; top: 0; z-index: 400; width: 38px; height: 38px; margin: -19px 0 0 -19px; border-radius: 50%; pointer-events: none;
+  border: 1px solid rgba(217, 184, 117, .7); opacity: 0; transition: opacity .4s, width .45s var(--ease), height .45s var(--ease), margin .45s var(--ease), background-color .45s, border-color .45s; mix-blend-mode: difference; }
+.cring.is-on { opacity: 1; }
+.cring.is-link { width: 74px; height: 74px; margin: -37px 0 0 -37px; background: rgba(217, 184, 117, .9); border-color: transparent; }
+.cring.is-down { width: 26px; height: 26px; margin: -13px 0 0 -13px; }
+
+/* smooth scroll owns the wheel, so native smooth scrolling would fight it */
+html.is-smooth { scroll-behavior: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.rv-ready .frame:not(.in) .frame__img, html.rv-ready .post:not(.in) .post__media img { clip-path: none; scale: none; }
+}
+@media print { .marquee, .cring { display: none !important; } }
+
+/* the journey timeline pins and travels sideways on wide screens (site.js › initJourney) */
+.hpin { position: relative; }
+.section:has(.hpin) { overflow-x: clip; }
+.hpin__sticky .shead { margin-bottom: clamp(2rem, 4vh, 3.5rem); }
+.hpin__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; width: 100vw; margin-left: calc(50% - 50vw); display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+.tl.tl--h { display: flex; gap: clamp(1.5rem, 2.5vw, 2.5rem); width: max-content; padding-inline: max(var(--gutter), calc(50vw - 640px + var(--gutter))); will-change: transform; }
+.tl--h::before { left: 0; right: 0; top: 6.4rem; bottom: auto; width: auto; height: 1px; background: linear-gradient(90deg, transparent, var(--accent) 4%, var(--accent) 96%, transparent); }
+.tl--h .tl__item { display: flex; flex-direction: column; align-items: stretch; gap: 3rem; width: clamp(320px, 28vw, 420px); }
+.tl--h .tl__item::after { left: 6px; top: 6.4rem; }
+.tl--h .tl__year, .tl--h .tl__item:nth-child(even) .tl__year { order: 0; text-align: left; height: 5rem; font-size: 5rem; }
+.tl--h .tl__card { flex: 1; min-height: 13rem; }
+.hpin__bar { position: relative; width: min(1280px - 2 * var(--gutter), 100% - 2 * var(--gutter)); height: 2px; margin: 3.5rem auto 0; background: color-mix(in srgb, var(--text) 10%, transparent); border-radius: 2px; overflow: hidden; }
+.hpin__bar i { position: absolute; inset: 0; background: var(--gold-grad); transform-origin: 0 50%; transform: scaleX(var(--jp, 0)); }
