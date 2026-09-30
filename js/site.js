@@ -391,6 +391,71 @@
     setTimeout(function () { if (cur.parentNode) cur.parentNode.removeChild(cur); }, 1900);
   }
 
+  /* ---------- whole-site depth: pointer light, auto-tilt, scroll roll ---------- */
+  function initDepth() {
+    if (reduceMotion) return;
+    // every panel on the site tilts, not only the hand-marked ones
+    if (finePointer) {
+      $all('.post, .fig, .frame, .tl__card, .leader, .plan, .astat, .gov__p, .dept, .mile, .cinfo__item, .step, .quote').forEach(function (el) {
+        if (el.hasAttribute('data-tilt') || el.closest('[data-tilt]')) return;
+        el.setAttribute('data-tilt', '');
+        if (!el.hasAttribute('data-tilt-max')) el.setAttribute('data-tilt-max', '5');
+      });
+    }
+    html.classList.add('has-depth');
+
+    // pointer turns the hero stacks and swings the extrusion of the lettering
+    var tx = 0, ty = 0, cx = 0, cy = 0, praf = 0, rs = html.style;
+    function ptick() {
+      cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
+      rs.setProperty('--px', cx.toFixed(3));
+      rs.setProperty('--py', cy.toFixed(3));
+      rs.setProperty('--ex', (0.55 - cx * 0.9).toFixed(3));
+      rs.setProperty('--ey', (0.9 - cy * 0.6).toFixed(3));
+      praf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.002 ? requestAnimationFrame(ptick) : 0;
+    }
+    if (finePointer) {
+      window.addEventListener('pointermove', function (e) {
+        tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1;
+        if (!praf) praf = requestAnimationFrame(ptick);
+      }, { passive: true });
+    }
+
+    // content blocks roll like pages on a drum as they cross the screen
+    var blocks = $all('.section > .wrap > *, .article > .wrap > *, .cycle__card').filter(function (el) {
+      return !el.hasAttribute('data-tilt') && !el.matches('.ring, .org, .table-wrap');
+    });
+    var visible = [];
+    blocks.forEach(function (el) { el.classList.add('dz'); });
+    function roll() {
+      var vh = innerHeight;
+      visible.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        var h = Math.min(r.height, vh);
+        var p = (r.top + h / 2 - vh / 2) / (vh / 2 + h / 2);
+        p = Math.max(-1, Math.min(1, p));
+        var a = Math.abs(p), dead = 0.3;
+        var s = a < dead ? 0 : (a - dead) / (1 - dead) * (p < 0 ? -1 : 1);
+        el.style.setProperty('--sp', (s * Math.abs(s)).toFixed(3));
+        el.style.setProperty('--sa', (s * s).toFixed(3));
+      });
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var i = visible.indexOf(en.target);
+          if (en.isIntersecting && i < 0) visible.push(en.target);
+          if (!en.isIntersecting && i > -1) visible.splice(i, 1);
+        });
+        roll();
+      }, { rootMargin: '10% 0px 10% 0px' });
+      blocks.forEach(function (el) { io.observe(el); });
+    }
+    var sraf = 0;
+    window.addEventListener('scroll', function () { if (!sraf) sraf = requestAnimationFrame(function () { sraf = 0; roll(); }); }, { passive: true });
+    window.addEventListener('resize', roll);
+  }
+
   /* ---------- init ---------- */
   function init() {
     applyLang(lang(), false);
@@ -401,6 +466,7 @@
     initCounters();
     initDust();
     initMagnet();
+    initDepth();
     initTilt();
     initRail();
     initFilter();

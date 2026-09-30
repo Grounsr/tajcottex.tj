@@ -1149,3 +1149,108 @@ html.is-opening .hero__in > *, html.is-opening .phero__in > * { animation-play-s
   .step__h { grid-column: 2; margin: 0; }
   .step__p { grid-column: 2; align-self: start; }
 }
+
+/* =========================================================
+   WHOLE-SITE 3D DEPTH
+   Text stays real HTML (three languages, search, copying);
+   depth comes from extruded lettering, slab edges, a hero
+   that turns with the pointer and blocks that roll in and out
+   of the screen as they scroll (site.js › initDepth).
+   --ex / --ey: direction of the extrusion, set from the pointer.
+   ========================================================= */
+:root { --ex: .55; --ey: .9; --px: 0; --py: 0; --x-side: #6e521f; }
+
+/* extruded display lettering: eight solid layers + a cast shadow.
+   On light paper the side of the letters is gold; on dark stages it is the letter colour sinking into gold. */
+:root { --x-a: #d2ae68; --x-b: #7a5c22; }
+[data-theme="dark"], .stage, .hero, .cycle, .manifesto, .cta { --x-a: color-mix(in srgb, currentColor 55%, #a9843f); --x-b: #3f2d0c; }
+.hero__title, .phero__title, .shead__title, .cta__title, .cycle__title, .cycle__h, .manifesto__text,
+.card__h, .post__h, .step__h, .mile__h, .dir__h, .node__title, .tl__card h3, .fig__num, .tl__year, .mile__year,
+.frame__badge b, .astat b, .cinfo__val, .article h2, .leader__name, .dept__abbr, .step__num {
+  --xd: .012em;
+  text-shadow:
+    calc(var(--ex) * var(--xd) * 1) calc(var(--ey) * var(--xd) * 1) 0 color-mix(in srgb, var(--x-a) 100%, var(--x-b)),
+    calc(var(--ex) * var(--xd) * 2) calc(var(--ey) * var(--xd) * 2) 0 color-mix(in srgb, var(--x-a) 86%, var(--x-b)),
+    calc(var(--ex) * var(--xd) * 3) calc(var(--ey) * var(--xd) * 3) 0 color-mix(in srgb, var(--x-a) 71%, var(--x-b)),
+    calc(var(--ex) * var(--xd) * 4) calc(var(--ey) * var(--xd) * 4) 0 color-mix(in srgb, var(--x-a) 57%, var(--x-b)),
+    calc(var(--ex) * var(--xd) * 5) calc(var(--ey) * var(--xd) * 5) 0 color-mix(in srgb, var(--x-a) 43%, var(--x-b)),
+    calc(var(--ex) * var(--xd) * 6) calc(var(--ey) * var(--xd) * 6) 0 color-mix(in srgb, var(--x-a) 29%, var(--x-b)),
+    calc(var(--ex) * var(--xd) * 7) calc(var(--ey) * var(--xd) * 7) 0 color-mix(in srgb, var(--x-a) 14%, var(--x-b)),
+    calc(var(--ex) * var(--xd) * 8) calc(var(--ey) * var(--xd) * 8) 0 color-mix(in srgb, var(--x-a) 0%, var(--x-b)),
+    calc(var(--ex) * var(--xd) * 10) calc(var(--ey) * var(--xd) * 12) .2em rgba(0, 0, 0, .24);
+}
+/* smaller type gets a thinner slab so it stays crisp */
+.card__h, .post__h, .step__h, .mile__h, .dir__h, .node__title, .tl__card h3, .article h2, .leader__name { --xd: .018em; }
+.fig__num, .tl__year, .mile__year, .frame__badge b, .astat b, .cinfo__val, .dept__abbr, .step__num { --xd: .016em; }
+/* gold gradient words are painted through transparent glyphs, so they take a drop-shadow stack instead */
+.hero__title em .w > span, .phero__title em .w > span, .shead__title em .w > span, .cta__title em .w > span,
+.manifesto__text strong .w > span {
+  text-shadow: none;
+  filter:
+    drop-shadow(calc(var(--ex) * .014em) calc(var(--ey) * .014em) 0 #9c7832)
+    drop-shadow(calc(var(--ex) * .014em) calc(var(--ey) * .014em) 0 #86652b)
+    drop-shadow(calc(var(--ex) * .014em) calc(var(--ey) * .014em) 0 #6e521f)
+    drop-shadow(calc(var(--ex) * .014em) calc(var(--ey) * .014em) 0 #5a4218)
+    drop-shadow(calc(var(--ex) * .08em) calc(var(--ey) * .1em) .12em rgba(0, 0, 0, .35));
+}
+.hero__title.words em, .manifesto__text.words strong { text-shadow: none; }
+/* lead paragraphs: a soft lift off the page */
+.hero__lead, .phero__lead, .shead__lead, .lede, .cta__lead, .cycle__p {
+  text-shadow: calc(var(--ex) * 1px) calc(var(--ey) * 1px) 0 color-mix(in srgb, currentColor 18%, transparent), 0 .35em .9em rgba(0, 0, 0, .14);
+}
+
+/* headings flip up word by word in 3D instead of sliding */
+.words .w { overflow: visible; perspective: 650px; }
+.words .w > span { opacity: 0; transform: rotateX(-92deg) translateZ(-.35em); transform-origin: 50% 100% -.3em; transition: transform 1.2s var(--ease), opacity .7s ease; }
+.words.is-shown .w > span { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .words .w > span { opacity: 1; transform: none; } }
+
+/* hero content is a stack of layers that turns with the pointer */
+html.has-depth .hero__in, html.has-depth .phero__in, html.has-depth .cta__in, html.has-depth .manifesto__in {
+  transform: perspective(1400px) rotateY(calc(var(--px) * 5deg)) rotateX(calc(var(--py) * -4deg));
+  transform-style: preserve-3d;
+}
+html.has-depth .hero__kick, html.has-depth .phero__in .kicker, html.has-depth .phero__in .crumbs { transform: translateZ(18px); }
+html.has-depth .hero__title, html.has-depth .phero__title, html.has-depth .cta__title, html.has-depth .manifesto__text { transform: translateZ(56px); transform-style: preserve-3d; }
+html.has-depth .hero__lead, html.has-depth .phero__lead, html.has-depth .cta__lead, html.has-depth .manifesto__by { transform: translateZ(30px); }
+html.has-depth .hero__actions, html.has-depth .cta__in .btn, html.has-depth .manifesto__mark { transform: translateZ(44px); }
+html.has-depth .hero__facts { transform: translateZ(22px); }
+@media (max-width: 760px) {
+  html.has-depth .hero__title, html.has-depth .phero__title, html.has-depth .cta__title, html.has-depth .manifesto__text { transform: translateZ(24px); }
+}
+
+/* blocks roll in from below and away above: --sp is the signed distance from the screen centre */
+html.has-depth .dz {
+  transform: perspective(1600px) rotateX(calc(var(--sp, 0) * 16deg)) translateZ(calc(var(--sa, 0) * -160px));
+  transform-origin: 50% 50%;
+  transition: opacity 1.1s var(--ease), translate 1.2s var(--ease), scale 1.2s var(--ease), transform .45s var(--ease-soft), box-shadow .6s var(--ease), border-color .4s;
+  transition-delay: var(--d, 0s), var(--d, 0s), var(--d, 0s), 0s, 0s, 0s;
+}
+
+/* cards and panels become slabs with a visible edge */
+.card, .post, .leader, .plan, .formcard, .mapcard, .tl__card, .astat, .gov__p, .dept {
+  --edge: color-mix(in srgb, var(--accent) 26%, var(--bg-2)); --edge-2: color-mix(in srgb, var(--accent) 38%, var(--bg-2));
+  box-shadow: 0 1px 0 var(--edge), 0 2px 0 var(--edge), 0 3px 0 var(--edge), 0 4px 0 var(--edge-2), 0 5px 0 var(--edge-2), var(--shadow);
+}
+.card:hover, .post:hover, .leader:hover, .plan:hover, .formcard:hover, .mapcard:hover, .tl__card:hover, .astat:hover, .gov__p:hover, .dept:hover {
+  box-shadow: 0 1px 0 var(--edge), 0 2px 0 var(--edge), 0 3px 0 var(--edge), 0 4px 0 var(--edge), 0 5px 0 var(--edge-2), 0 6px 0 var(--edge-2), 0 7px 0 var(--edge-2), var(--shadow-lg);
+}
+/* content inside tilting cards floats above the face */
+[data-tilt] .post__body, [data-tilt].tl__card > * { transform: translateZ(22px); }
+[data-tilt] .fig__num, [data-tilt] .astat b { transform: translateZ(36px); }
+
+/* gold buttons are physical keys: a thick edge that presses down */
+.btn--gold {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .55) inset, 0 -2px 0 rgba(0, 0, 0, .12) inset, 0 4px 0 #86652b, 0 5px 0 #5a4218, 0 16px 30px -10px rgba(201, 164, 92, .75);
+}
+.btn--gold:hover { box-shadow: 0 1px 0 rgba(255, 255, 255, .55) inset, 0 -2px 0 rgba(0, 0, 0, .12) inset, 0 5px 0 #86652b, 0 7px 0 #5a4218, 0 24px 40px -12px rgba(201, 164, 92, .9); }
+.btn--gold:active { --lift: 4px; box-shadow: 0 1px 0 rgba(255, 255, 255, .4) inset, 0 -1px 0 rgba(0, 0, 0, .12) inset, 0 1px 0 #86652b, 0 1px 0 #5a4218, 0 6px 12px -6px rgba(201, 164, 92, .7); }
+.btn--line, .btn--line-ink { box-shadow: 0 3px 0 rgba(0, 0, 0, .18), 0 10px 22px -12px rgba(0, 0, 0, .4); }
+.btn--line:active, .btn--line-ink:active { --lift: 2px; box-shadow: 0 1px 0 rgba(0, 0, 0, .18); }
+
+@media (prefers-reduced-motion: reduce) {
+  html.has-depth .dz, html.has-depth .hero__in, html.has-depth .phero__in, html.has-depth .cta__in, html.has-depth .manifesto__in { transform: none; }
+}
+@media print {
+  * { text-shadow: none !important; filter: none !important; }
+}
