@@ -391,69 +391,108 @@
     setTimeout(function () { if (cur.parentNode) cur.parentNode.removeChild(cur); }, 1900);
   }
 
-  /* ---------- whole-site depth: pointer light, auto-tilt, scroll roll ---------- */
-  function initDepth() {
+  /* ---------- immersive: smooth scroll, hero dissolve, marquee, cursor ring ---------- */
+  function initImmersive() {
     if (reduceMotion) return;
-    // every panel on the site tilts, not only the hand-marked ones
-    if (finePointer) {
-      $all('.post, .fig, .frame, .tl__card, .leader, .plan, .astat, .gov__p, .dept, .mile, .cinfo__item, .step, .quote').forEach(function (el) {
-        if (el.hasAttribute('data-tilt') || el.closest('[data-tilt]')) return;
-        el.setAttribute('data-tilt', '');
-        if (!el.hasAttribute('data-tilt-max')) el.setAttribute('data-tilt-max', '5');
-      });
-    }
-    html.classList.add('has-depth');
+    html.classList.add('is-immersive');
+    var vel = 0, lastY = window.scrollY || 0;
+    window.tajScroll = { vel: 0 };
 
-    // pointer turns the hero stacks and swings the extrusion of the lettering
-    var tx = 0, ty = 0, cx = 0, cy = 0, praf = 0, rs = html.style;
-    function ptick() {
-      cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
-      rs.setProperty('--px', cx.toFixed(3));
-      rs.setProperty('--py', cy.toFixed(3));
-      rs.setProperty('--ex', (0.55 - cx * 0.9).toFixed(3));
-      rs.setProperty('--ey', (0.9 - cy * 0.6).toFixed(3));
-      praf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.002 ? requestAnimationFrame(ptick) : 0;
+    // inertial wheel scrolling on desktop; touch keeps its native momentum
+    var smooth = finePointer && 'requestAnimationFrame' in window;
+    var target = lastY, current = lastY, gliding = false;
+    function maxY() { return document.documentElement.scrollHeight - innerHeight; }
+    function glide() {
+      current += (target - current) * 0.095;
+      if (Math.abs(target - current) < 0.4) { current = target; gliding = false; }
+      window.scrollTo(0, current);
+      if (gliding) requestAnimationFrame(glide);
     }
-    if (finePointer) {
-      window.addEventListener('pointermove', function (e) {
-        tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1;
-        if (!praf) praf = requestAnimationFrame(ptick);
+    function glideTo(y) { target = Math.max(0, Math.min(maxY(), y)); if (!gliding) { gliding = true; current = window.scrollY; requestAnimationFrame(glide); } }
+    if (smooth) {
+      html.classList.add('is-smooth');
+      window.addEventListener('wheel', function (e) {
+        if (e.ctrlKey || e.defaultPrevented || document.body.style.overflow === 'hidden') return;
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+        for (var n = e.target; n && n !== document.body && n.nodeType === 1; n = n.parentNode) {
+          if (n.scrollHeight > n.clientHeight + 1 && /(auto|scroll)/.test(getComputedStyle(n).overflowY)) return;
+        }
+        e.preventDefault();
+        var d = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1);
+        if (!gliding) target = window.scrollY;
+        glideTo(target + d);
+      }, { passive: false });
+      // a scrollbar drag, key press or script jump takes over from the glide
+      window.addEventListener('scroll', function () {
+        if (gliding && Math.abs(window.scrollY - current) > 3) gliding = false;
+        if (!gliding) target = current = window.scrollY;
       }, { passive: true });
-    }
-
-    // content blocks roll like pages on a drum as they cross the screen
-    var blocks = $all('.section > .wrap > *, .article > .wrap > *, .cycle__card').filter(function (el) {
-      return !el.hasAttribute('data-tilt') && !el.matches('.ring, .org, .table-wrap');
-    });
-    var visible = [];
-    blocks.forEach(function (el) { el.classList.add('dz'); });
-    function roll() {
-      var vh = innerHeight;
-      visible.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        var h = Math.min(r.height, vh);
-        var p = (r.top + h / 2 - vh / 2) / (vh / 2 + h / 2);
-        p = Math.max(-1, Math.min(1, p));
-        var a = Math.abs(p), dead = 0.3;
-        var s = a < dead ? 0 : (a - dead) / (1 - dead) * (p < 0 ? -1 : 1);
-        el.style.setProperty('--sp', (s * Math.abs(s)).toFixed(3));
-        el.style.setProperty('--sa', (s * s).toFixed(3));
+      ['keydown', 'mousedown', 'touchstart'].forEach(function (t) { window.addEventListener(t, function () { gliding = false; }, { passive: true }); });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a[href^="#"]');
+        if (!a || a.getAttribute('href').length < 2) return;
+        var el = document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)));
+        if (!el) return;
+        e.preventDefault();
+        glideTo(el.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(html).scrollPaddingTop) || 0));
+        if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
       });
     }
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          var i = visible.indexOf(en.target);
-          if (en.isIntersecting && i < 0) visible.push(en.target);
-          if (!en.isIntersecting && i > -1) visible.splice(i, 1);
-        });
-        roll();
-      }, { rootMargin: '10% 0px 10% 0px' });
-      blocks.forEach(function (el) { io.observe(el); });
+
+    // running band of words before the footer
+    var footer = document.querySelector('.footer');
+    var track = null, mx = 0, half = 0;
+    if (footer) {
+      var star = '<svg class="marquee__star" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></svg>';
+      var words = ['Хлопок', '<i>Cotton</i>', '<span class="o">Пахта</span>', 'Текстиль', '<i>Textile</i>', '<span class="o">Нассоҷӣ</span>'];
+      var item = '<div class="marquee__item">' + words.map(function (w) { return w + star; }).join('') + '</div>';
+      var band = document.createElement('div');
+      band.className = 'marquee'; band.setAttribute('aria-hidden', 'true');
+      band.innerHTML = '<div class="marquee__track">' + item + item + '</div>';
+      footer.parentNode.insertBefore(band, footer);
+      track = band.firstChild;
+      half = track.scrollWidth / 2;
+      window.addEventListener('resize', function () { half = track.scrollWidth / 2; });
     }
-    var sraf = 0;
-    window.addEventListener('scroll', function () { if (!sraf) sraf = requestAnimationFrame(function () { sraf = 0; roll(); }); }, { passive: true });
-    window.addEventListener('resize', roll);
+
+    // hero content dissolves upward as the page takes over
+    var hero = document.querySelector('.hero, .phero');
+    var ring = null;
+    function tick() {
+      var y = window.scrollY || 0;
+      vel += ((y - lastY) - vel) * 0.18; lastY = y;
+      window.tajScroll.vel = vel;
+      if (hero) html.style.setProperty('--hp', Math.max(0, Math.min(1, y / (hero.offsetHeight * 0.85))).toFixed(3));
+      if (track && half) {
+        mx -= 0.6 + Math.min(40, Math.abs(vel)) * 0.35;
+        if (mx <= -half) mx += half;
+        track.style.transform = 'translate3d(' + mx.toFixed(1) + 'px,0,0)';
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // a soft ring follows the pointer and opens over anything clickable
+    if (finePointer) {
+      ring = document.createElement('div');
+      ring.className = 'cring'; ring.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(ring);
+      var rx = 0, ry = 0, tx = 0, ty = 0, rraf = 0;
+      function follow() {
+        rx += (tx - rx) * 0.2; ry += (ty - ry) * 0.2;
+        ring.style.transform = 'translate3d(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px,0)';
+        rraf = Math.abs(tx - rx) + Math.abs(ty - ry) > 0.3 ? requestAnimationFrame(follow) : 0;
+      }
+      window.addEventListener('pointermove', function (e) {
+        tx = e.clientX; ty = e.clientY;
+        if (!ring.classList.contains('is-on')) { rx = tx; ry = ty; ring.classList.add('is-on'); }
+        ring.classList.toggle('is-link', !!e.target.closest('a, button, [role="button"], label, select, summary'));
+        if (!rraf) rraf = requestAnimationFrame(follow);
+      }, { passive: true });
+      document.addEventListener('pointerleave', function () { ring.classList.remove('is-on'); });
+      window.addEventListener('pointerdown', function () { ring.classList.add('is-down'); });
+      window.addEventListener('pointerup', function () { ring.classList.remove('is-down'); });
+    }
   }
 
   /* ---------- init ---------- */
@@ -466,7 +505,7 @@
     initCounters();
     initDust();
     initMagnet();
-    initDepth();
+    initImmersive();
     initTilt();
     initRail();
     initFilter();
