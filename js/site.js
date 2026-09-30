@@ -495,12 +495,40 @@
     }
   }
 
+  /* ---------- journey timeline: pinned horizontal travel on wide screens ---------- */
+  function initJourney() {
+    if (reduceMotion || !finePointer || innerWidth < 1024) return;
+    $all('.tl').forEach(function (tl) {
+      var pin = document.createElement('div'), sticky = document.createElement('div'), bar = document.createElement('div');
+      pin.className = 'hpin'; sticky.className = 'hpin__sticky'; bar.className = 'hpin__bar'; bar.innerHTML = '<i></i>';
+      var head = tl.previousElementSibling;
+      tl.parentNode.insertBefore(pin, tl);
+      // the section heading rides along in the pinned frame
+      if (head && head.classList.contains('shead')) { var hw = document.createElement('div'); hw.className = 'wrap'; hw.appendChild(head); sticky.appendChild(hw); head.classList.add('in'); }
+      sticky.appendChild(tl); sticky.appendChild(bar); pin.appendChild(sticky);
+      tl.classList.add('tl--h');
+      $all('.rv', tl).forEach(function (el) { el.classList.add('in'); });
+      var dist = 0;
+      function measure() { dist = Math.max(0, tl.scrollWidth - innerWidth); pin.style.height = (innerHeight + dist) + 'px'; }
+      function move() {
+        var r = pin.getBoundingClientRect();
+        var p = dist ? Math.max(0, Math.min(1, -r.top / dist)) : 0;
+        tl.style.transform = 'translate3d(' + (-p * dist).toFixed(1) + 'px,0,0)';
+        bar.style.setProperty('--jp', p.toFixed(3));
+      }
+      measure(); move();
+      window.addEventListener('resize', function () { measure(); move(); });
+      window.addEventListener('scroll', function () { requestAnimationFrame(move); }, { passive: true });
+    });
+  }
+
   /* ---------- init ---------- */
   function init() {
     applyLang(lang(), false);
     $all('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
     initCurtain();
     splitWords();
+    initJourney();
     initReveal();
     initCounters();
     initDust();
